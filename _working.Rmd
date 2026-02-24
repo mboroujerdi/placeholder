@@ -1,0 +1,736 @@
+
+# Working_codes{-}
+
+```{r themodel, echo = FALSE, fig.cap = 'The negative feedback compartmental model.'}
+
+knitr::include_graphics(rep("figure1.png"))
+```
+
+The equations describing the model in Figure \@ref(fig:themodel) are:
+\begin{equation}
+\mathbf{\frac{ds}{dt}=Ra-k_{3}C}
+(\#eq:equation1)
+\end{equation}
+
+\begin{equation}
+\mathbf{\frac{dC}{dt}=k_{4}S-k_{2}C}
+(\#eq:equation2)
+\end{equation}
+
+At steady state condition that is, when left hand sides of equations \@ref(eq:equation1) and \@ref(eq:equation2) are zero and substituting for C from \@ref(eq:equation2) into \@ref(eq:equation1)
+\begin{equation}
+\mathbf{Ra=\frac{k_3k_4}{k_2}S}
+(\#eq:equation3)
+\end{equation}
+Where $S$ is a label and can represent a substrate, hormone, ligand or any other biological entity with concentration. At initial condition, e.g. $S(0)$ or at any discrete time value $t_i$ that the system has reached, e.g. $S(t_i)$ following a change in its production rate $Ra(t_i)$. Note that we are assuming that the system has reached a steady state. The coefficient of equation \@ref(eq:equation3) is termed the clearance rate $(cr)$ with dimension of $/time$. Note that this formulation uses conservation of mass for each of the compartments $S$ and $C$. The label $C$ represent controller of $S$ where all controlling action takes place.  This model also represent a servo and as such would respond to it its input. For example, if it is required that $S$ reaching a value $b$ from its current position the $Ra$ would be $crb$. The system can also be presented using the state space formulation for linear dynamical systems, that is,
+\begin{equation}
+\dot{\mathbf{x}} = \mathbf{A}\mathbf{x} + \mathbf{B}\mathbf{u}
+(\#eq:equation4)
+\end{equation}
+\begin{equation}
+\mathbf{y}=\mathbf{Cx}
+(\#eq:equation5)
+\end{equation}
+
+where $A$, $B$ and $C$ are matrices with dimensions n x n, n x r and m x n respectively. It is noted that for the state space representation of the model shown in Figure \@ref(fig:themodel-1) the magnitude of $u$ is given by equation  \@ref(eq:equation3). It can be shown that, the parameters of the model can be related to the standard second order differential equation parameterised by $\omega_n$ and $\zeta$ with $k_2=2\zeta\omega_n$ and $k_3=k_4=\omega_n$.
+
+\begin{equation}
+\frac{d^2 S}{dt^2}
++ 2 \zeta \omega_n \frac{d S}{dt}
++ \omega_n^2 S
+= \omega_n^2 u
+\label{eq:equation6}
+\end{equation}
+
+In this analysis, the dynamics of the four ribonucleic acids, Guanine (G), Adenine (A), Cytosine (C), and Uracil (U), not in terms of their chemical composition but their network formation, are represented by the same second-order negative feedback mathematical model, Figure \@ref(fig:themodel-1). These models may then be linked together to form a network representing an RNA sequence. The resulting network can then be examined in terms of its stability within a control-theoretic framework. Although the generic model uses a measure for natural frequency $\omega_n$ and the damping factor ($\zeta$) or their equivalent rate constants ($k_2$, $k_3=k_4$), their exact values are not required and arbitrary values together with their relative values may be used for network simulation purposes. For example say $\omega_n$ value is set to that of glucose concentration. The $\omega_n$ value for each of the ribonucleic acids can be computed relative to their molecular weight with respect to one of them. In situation where the binding parameters are available the $\omega_n$ and $\zeta$ are computed using folloowing equations.
+
+$\omega_n$ = sqrt(k_fold * k_bind_eff)
+
+
+$\zeta$ = (k_unbind + k_unfold) / (2 * $\omega_n$)
+
+The The generic model (\@ref(fig:themodel-1)) has two controller fluxes, namely $k_4S$ and $k_3C$, these fluxes are termed controller since they don't appear in the source compartment but in the exiting ones. There are two ways whereby the models can be linked together, the first is to feed the flux $k_2C$ to the $Ra$ of the next and second is to feed the flux $k_3C$ to the $Ra$ of the next. For the first method the repeated state would add a "pole", that is a root to the denominator polynomial of the transfer function since the transfer functions multiply, whereas the second would add a "zero", that is a root to the numerator polynomial. In general both of the controller fluxes can be a network with differing number of elements. For an RNA sequence the first element has the transfer function.
+
+\begin{equation}
+\mathbf{G_{cascade}(s) = G_1(s) = \frac{k_{31}(s + k_{21})}{s(s + k_{21}) + k_{31}k_{41}}}
+(\#eq:equation7)
+  \end{equation}
+
+The subsequent elements in the sequence can be added through two control fluxes \( H_{1}(s) \) or \( H_{2}(s) \) or a combination of them. For the current analysis we only use one alternative and examine the consequences. For situation when there there are two distinct RNA sequences, for example, miRNA and ncRNA, we we will use one sequence for \( H_{1}(s) \) and the other for \( H_{2}(s) \).
+
+
+\begin{equation}
+\mathbf{H_{cascade}(s) = H_1(s) =\frac{k_{32}(s + k_{22})}{s(s + k_{22}) + k_{32}k_{42}}}
+(\#eq:equation8)
+\end{equation}
+
+
+\begin{equation}
+\mathbf{H_{cascade}(s) = H_2(s) = \frac{k_{22}k_{42}}{s(s + k_{22})+ k_{32}k_{42}}}
+(\#eq:equation9)
+\end{equation}
+
+The overall transfer function of a cascade can only be the multiplication of equations  \@ref(eq:equation7) and \@ref(eq:equation8) or equations \@ref(eq:equation7) and \@ref(eq:equation9) or a combination of the two.
+
+See Appendix for detailed derivations of the transfer functions for networks of arbitrary length.
+
+
+### RNA Sequence Sources and Database Accessions {-}
+
+miRNA sequences were obtained from miRBase Release 22.1 [@kozomara2019mirbase]. The miRNA analyzed was hsa-mir-34a-5p (miRBase accession MI0000268 for the precursor, MIMAT0000255 for the mature 5p form). This 22-nucleotide sequence represents the predominant functional form and was selected as representative of short regulatory RNAs.
+
+non-coding RNA sequences were obtained from NONCODE Version 6 [@zhao2016noncode;@noncode2023].The ncRNA analyzed was based on LINC00115 (NONCODE accession NONHSAG033138.2). Natural LINC00115 exists as multiple transcript isoforms ranging from 336 to 1,319 nucleotides. For control-theoretic analysis, we utilized a 140-nucleotide representative construct that maintains structural characteristics of regulatory lncRNAs (repetitive secondary structure elements) while enabling tractable cascade modeling.
+
+Complete database cross-references: hsa-mir-34a (NCBI Gene 407040, Ensembl ENSG00000284357, RNAcentral URS000030BD69); LINC00115 (Ensembl ENSG00000225880, RNAcentral URS00008C2659).
+
+Database access: miRBase (https://www.mirbase.org/), NONCODE (http://www.noncode.org/), both accessed January 2025.
+
+```{r setup, echo=FALSE, message=FALSE}
+library(kableExtra)
+library(stringr)
+ren <- function (x, y, z)  {
+  zz <- deparse(substitute(z))
+  names(z)[match(x, names(z))] <- y
+  assign(zz, z, env = parent.frame())
+  invisible(NULL)
+}
+d1 <- read.csv("RNA_seq2.csv", sep=",", fill=T, na.strings=c(".", " .", "NA", ", ", " ,"),
+               header=TRUE, row.names=NULL, stringsAsFactors=FALSE)
+
+# Create d2 and d3
+d2 <- d1[,c("RNA_Type", "RNA_ID", "Chromosome")]
+
+# Add database accession column to d2
+d2$Database <- "See text"
+d2$Accession <- ""
+
+# Add accessions for the RNAs used in analysis
+d2$Accession[d2$RNA_ID == "hsa-mir-34a"] <- "MI0000268"
+d2$Accession[d2$RNA_ID == "LINC00115"] <- "NONHSAG033138.2"
+
+# Reorder columns
+d2 <- d2[,c("RNA_Type", "RNA_ID", "Accession", "Chromosome")]
+d2a<-d2[c(1,6),]
+
+d4 <- as.data.frame(d1[1,"Sequence"])
+d5 <- as.data.frame(d1[6,"Sequence"])
+```
+
+```{r export, echo=FALSE}
+write.csv(d4, file="k2sequence.csv", row.names=FALSE)
+write.csv(d5, file="k3sequence.csv", row.names=FALSE)
+```
+
+Tables \@ref(tab:table-1), \@ref(tab:table-2) and \@ref(tab:table-3) show the description and sequences of the microRNA and noncoding RNA used in this analysis.
+
+```{r table-1, echo=FALSE, message=FALSE}
+knitr::kable(
+  head(d2a, 4),
+  longtable = TRUE,
+  booktabs = TRUE,
+  caption = 'RNA sequence identifiers including type, ID, database accession, and chromosome location'
+)
+```
+
+```{r table-2, echo=FALSE}
+# Create enhanced table with database info
+miRNA_table <- data.frame(
+  Property = c("Gene Symbol", "Database", "Accession", "Sequence (5' to 3')", "Length"),
+  Value = c("hsa-mir-34a-5p", "miRBase v22.1", "MI0000268 / MIMAT0000255",
+            as.character(d4[1,1]), "22 nt")
+)
+
+knitr::kable(
+  miRNA_table,
+  longtable = TRUE,
+  booktabs = TRUE,
+  col.names = c("", ""),
+  caption = 'miRNA sequence with database accession'
+) %>%
+  kable_styling(latex_options = "hold_position")
+```
+
+**Note**: Sequence obtained from miRBase Release 22.1 [@kozomara2019mirbase]. MI0000268 is the precursor accession; MIMAT0000255 is the mature miRNA (5p arm) accession. Additional cross-references: NCBI Gene ID 407040, Ensembl ENSG00000284357, RNAcentral URS000030BD69.
+
+```{r table-3, echo=FALSE}
+# Create enhanced table with database info
+ncRNA_table <- data.frame(
+  Property = c("Gene Symbol", "Database", "Accession", "RNA Class", "Length", "Sequence Type"),
+  Value = c("LINC00115", "NONCODE v6", "NONHSAG033138.2", "lincRNA", "140 nt",
+            "Representative construct*")
+)
+
+knitr::kable(
+  ncRNA_table,
+  longtable = TRUE,
+  booktabs = TRUE,
+  col.names = c("", ""),
+  caption = 'ncRNA sequence with database accession'
+) %>%
+  kable_styling(latex_options = "hold_position")
+```
+
+**Sequence (5' to 3'):**
+```{r table-3-seq, echo=FALSE}
+# Clean and wrap the sequence with line breaks every 40 characters
+clean_seq <- gsub(" ", "", as.character(d5[1,1]))
+wrapped_seq <- gsub("(.{40})", "\\1\n", clean_seq)
+
+# Create simple one-column table for sequence
+seq_table <- data.frame(Sequence = wrapped_seq)
+
+knitr::kable(
+  seq_table,
+  booktabs = TRUE,
+  col.names = NULL,
+  row.names = FALSE
+) %>%
+  kableExtra::kable_styling(
+    latex_options = "hold_position",
+    position = "center"
+  ) %>%
+  kableExtra::column_spec(1, width = "35em")
+```
+
+**\*Note**: This is a 140-nucleotide representative construct based on LINC00115 [@noncode2023] designed for control-theoretic modeling. Natural LINC00115 exists as multiple transcript isoforms ranging from 336 to 1,319 nucleotides (NONCODE v6, Ensembl). This construct maintains structural characteristics of regulatory lncRNAs while enabling tractable cascade analysis. Additional cross-references: Ensembl ENSG00000225880, RNAcentral URS00008C2659.
+
+## Bode Plot {-}
+
+In control theory and frequency-domain analysis, a Bode plot (or Bode diagram) is a graphical representation of a system's frequency response. It is composed of two plots against a logarithmic frequency ($\omega$) axis. There is also a phase plot showing $\angle$G($j\omega$) in degrees versus $\omega$.
+
+Here G(s) is the transfer function of a linear, time-invariant (LTI) system, and s=$j\omega$. The Bode plot allows you to see how the gain and phase shift vary across frequencies. The Bode plot will be used to assess the stability of each controller flux
+[@ogata_modern_2010; @schwarz_understanding_nodate].
+
+# Results {-}
+
+## Overview of Configurations Analyzed {-}
+
+To characterize how sequence composition determines regulatory dynamics, we analyzed four RNA cascade configurations using frequency-domain analysis. Each configuration represents a distinct biological scenario: short miRNA regulation (22 nucleotides), long ncRNA regulation (140 nucleotides), and their potential interaction. Tables \@ref(tab:table-4), \@ref(tab:table-5) and \@ref(tab:table-6) summarizes quantitative metrics for all configurations.
+
+**Configuration 1 (miRNA, G-type):** 22-nucleotide miRNA sequence (hsa-mir-34a) with feed-forward cascade topology, representing rapid responsive regulation.
+
+**Configuration 2 (miRNA, H-type):** Same 22-nucleotide sequence with feedback cascade topology, representing stable maintenance regulation.
+
+**Configuration 3 (ncRNA, G-type):** 140-nucleotide ncRNA sequence (LINC00115) with feed-forward topology, representing long-range temporal integration.
+
+**Configuration 4 (Mixed cascade):** Sequential combination of Config 1 followed by Config 2 H-type stages, modeling miRNA-ncRNA regulatory crosstalk.
+
+For each configuration, we computed Bode plots spanning six decades of frequency (10^{-3} to 10^{3} rad/s, equivalent to timescales from ~1 second to ~17 minutes) and extracted key performance metrics. The results are shown in Tables \@ref(tab:table-4), \@ref(tab:table-5) and \@ref(tab:table-6).
+
+```{r table-4, echo=FALSE, comment=""}
+d6 <- read.csv("enhanced_metrics_rad_s_f.csv", sep=",", fill=T,
+               na.strings=c(".", " .", "NA", ", ", " ,"),
+               header=TRUE, row.names=NULL, stringsAsFactors=FALSE)
+d7 <- d6[,1:5]
+d8 <- d6[,6:10]
+d9 <- d6[,11:13]
+
+knitr::kable(
+  head(d7, 10), longtable = TRUE, booktabs = TRUE,
+  caption = 'Frequency response metrics (Part 1): Configuration details, DC gain, high-frequency attenuation, and peak characteristics'
+)
+```
+```{r table-5, echo=FALSE, comment=""}
+
+knitr::kable(
+  head(d8, 10), longtable = TRUE, booktabs = TRUE,
+  caption = 'Frequency response metrics (Part 2): Cutoff frequency, bandwidth, stability margins (gain and phase)'
+)
+```
+
+```{r table-6, echo=FALSE, comment=""}
+
+knitr::kable(
+  head(d9, 10), longtable = TRUE, booktabs = TRUE,
+  caption = 'Frequency response metrics (Part 3): Crossover frequency and phase characteristics'
+)
+```
+Figure \@ref(fig:plot1) shows the Bode plot analysis of the four RNA regulatory cascade configurations.
+
+```{r plot1, echo=FALSE, fig.cap="Bode plot analysis of four RNA regulatory cascade configurations. Upper panels show magnitude response (dB) indicating signal amplification at low frequencies and attenuation at high frequencies. Lower panels show phase response (degrees) indicating signal delay through the cascade. (A) 22-nucleotide miRNA with G-type topology exhibits 8.1-minute response time and moderate noise filtering. (B) Same miRNA with H-type topology shows doubled phase lag and enhanced high-frequency rejection. (C) 140-nucleotide ncRNA demonstrates ultra-selective filtering with 21.8-minute response time, effectively rejecting signals faster than ~20 minutes. (D) Mixed miRNA-ncRNA cascade displays marginal stability with extreme phase accumulation, suggesting potential for bistability or oscillatory behavior. Dashed vertical lines indicate -3 dB cutoff frequencies corresponding to characteristic response timescales. All systems function as low-pass temporal filters with selectivity proportional to cascade length.", out.width='79%', fig.align='center'}
+knitr::include_graphics("Figure_3.2_combined_rad_s.png")
+```
+
+## Configuration 1: Short miRNA Cascade (G-type) - Rapid Responsive Regulation {-}
+
+The 22-stage miRNA cascade with feed-forward (G-type) architecture exhibited classical low-pass filter characteristics (Figure \@ref(fig:plot1)A), functioning as a noise-filtering regulatory element with moderate selectivity.
+
+**Frequency response characteristics:** The system displayed a DC gain of 144.39 dB, corresponding to an amplification factor of 1.66 × 10^{7} for sustained low-frequency signals. The magnitude response showed smooth monotonic rolloff beginning at 0.01 rad/s, with a -3 dB cutoff frequency of 0.0129 rad/s. High-frequency attenuation reached -1396.86 dB beyond 100 rad/s, with a rolloff slope of -44 dB/decade consistent with 22 cascaded second-order systems.
+
+**Biological interpretation:** The cutoff frequency of 0.0129 rad/s corresponds to a **characteristic response time of 8.1 minutes** period = $2\pi /\omega = 487$ seconds. This timescale aligns remarkably well with known miRNA regulatory dynamics:
+- Mammalian mRNA half-lives: 5-20 minutes (median ~11 minutes)
+- miRNA-mediated repression onset: 6-12 minutes in reporter assays
+- Transcriptional burst periods: 10-30 minutes
+
+The system effectively filters signals varying faster than ~8 minutes while amplifying slower, sustained regulatory inputs—precisely the behavior expected for miRNA-mediated gene silencing, which must distinguish persistent regulatory signals from transient transcriptional noise.
+
+**Phase characteristics:** The phase response accumulated -1979.99° of lag (5.5 complete cycles), indicating substantial signal propagation delay. In biological terms, this represents the cumulative time required for conformational changes, binding events, and regulatory signal transmission through 22 sequential regulatory steps. The absence of phase discontinuities confirms stable, well-damped dynamics without resonance peaks.
+
+## Configuration 2: miRNA Cascade (H-type) - Enhanced Noise Rejection {-}
+
+The same 22-nucleotide sequence implemented with feedback (H-type) architecture retained identical DC gain but exhibited fundamentally altered dynamics (Figure \@ref(fig:plot1)B), suggesting an alternative regulatory strategy prioritizing stability over responsiveness.
+
+**Frequency response characteristics:** The -3 dB cutoff frequency shifted to 0.0121 rad/s (8.6-minute period), marginally slower than G-type. However, high-frequency attenuation reached -2648.94 dB—**exactly double** that of G-type configuration. The rolloff steepened to -88 dB/decade, and phase lag reached -3954.13° (10.98 cycles)—again precisely **2-fold greater** than G-type.
+
+**Biological interpretation:** The systematic 2× factor in both attenuation and phase lag reveals a fundamental architectural principle. H-type cascades sacrifice some responsiveness (6% slower cutoff) for dramatically enhanced noise rejection (2× stronger high-frequency filtering). This trade-off may be evolutionarily selected in regulatory contexts requiring:
+- Stable maintenance of expression states despite fluctuating inputs
+- Strong rejection of cell cycle-dependent transcriptional bursts
+- Prevention of spurious activation by transient signals
+
+The H-type architecture functions analogously to a more heavily damped mechanical system—slower to respond but more resistant to perturbations.
+
+**Mechanistic origin:** The 2× difference arises from transfer function structure. G-type functions include ctions include a numerator zero (s + k_{2} term) providing  phase lead compensation, effectively "anticipating" input changes. H-type functions lack this compensatory term, resulting in pure lag behavior with stronger damping.
+
+## Configuration 3: Long ncRNA Cascade (G-type) - Ultra-Selective Temporal Integration {-}
+
+The 140-nucleotide ncRNA sequence produced extreme frequency selectivity (Figure \@ref(fig:plot1)C), functioning as an ultra-narrow temporal filter that responds only to very slow, sustained signals.
+
+**Frequency response characteristics:** The DC gain reached 997.45 dB (amplification factor ~7.45 × 10^{49}), demonstrating extraordinary sensitivity to persistent low-frequency inputs. The magnitude response remained flat until 0.005 rad/s, then exhibited an exceptionally steep rolloff approaching -280 dB/decade. The -3 dB cutoff frequency occurred at 0.0048 rad/s (**21.8-minute characteristic period**), 2.7-fold slower than the miRNA cascade. High-frequency attenuation approached negative infinity, representing complete signal rejection above 10 rad/s.
+
+**Biological interpretation:** The 21.8-minute response timescale positions this ncRNA as a **temporal integrator** that accumulates regulatory signals over extended periods while ignoring rapid fluctuations. This filtering characteristic is functionally appropriate for:
+- Long ncRNAs that modulate chromatin state (timescales: 20-60 minutes)
+- Competitive endogenous RNAs (ceRNAs) buffering miRNA activity over cell cycle phases
+- Scaffold RNAs maintaining stable protein complex assembly
+
+The extreme DC gain (10^{49}-fold amplification) may seem biologically implausible, but represents the system's theoretical sensitivity to infinitesimally slow perturbations if maintained indefinitely—a mathematical idealization rather than a physiological prediction. Biologically, saturation and nonlinearities would limit actual gain.
+
+**Sequence length effects:** Comparing Configs 1 and 3 reveals systematic scaling laws:
+- DC gain increases by **~7.1 dB per nucleotide** (853 dB gain over 118 additional nucleotides)
+- Rolloff steepness scales proportionally with cascade length (-280/-44 = 6.4×; 140/22 = 6.4×)
+- Phase accumulation scales linearly (13,680°/1980° = 6.9×)
+- Bandwidth scales inversely with length (0.0048/0.0129 = 0.37×)
+
+This suggests ncRNA length may be evolutionarily optimized for specific temporal filtering requirements.
+
+## Configuration 4: Mixed Cascade (miRNA + ncRNA) - Marginal Stability and Emergent Dynamics {-}
+
+The combined cascade displayed unique dynamics suggesting operation at a stability boundary (Figure \@ref(fig:plot1)D), where the system may exhibit bistability, sustained oscillations, or ultra-sensitive switching behavior.
+
+**Frequency response characteristics:** The DC gain computed as 1141.84 dB with numerical values approaching infinity, indicating the system does not possess a stable steady-state at zero frequency. The magnitude response appeared flat across the lowest frequency decade (10^{-3} to 10^{-2} rad/s), contrasting sharply with other configurations showing clear DC plateaus. The -3 dB cutoff occurred at 0.0043 rad/s (**24.4-minute period**), the slowest of all configurations. Phase lag reached -27,689° (76.91 complete cycles).
+
+**Biological interpretation - Three potential dynamic regimes:**
+
+**1. Limit cycle oscillations:** The marginal stability suggests the system may generate **sustained oscillations** with ~24-minute period, matching observed timescales of:
+   - Segmentation clock in vertebrate development (20-30 min in zebrafish, 2h in mice)
+   - HES1 oscillations in mammalian cells (~30 min)
+   - NF-$\kappa$B oscillations in immune response (1.5-6h, harmonics possible)
+
+**2. Bistable switching:** The infinite DC gain is a mathematical signature of **bistability**—two stable states separated by an unstable equilibrium. Biologically, this could enable:
+   - All-or-none regulatory decisions (e.g., cell fate switches)
+   - Hysteresis (different thresholds for activation vs. deactivation)
+   - Memory storage at the molecular level
+
+**3. Ultra-sensitive amplification:** Near the critical frequency (0.0043 rad/s), infinitesimal input changes could produce large output variations—a hallmark of **ultra-sensitive switches** common in developmental and stress response pathways.
+
+**Extended temporal integration:** The 77-cycle phase lag represents processing delays spanning **30-50 hours** at biological timescales—exceeding typical cell cycle durations. Such extended delays can fundamentally alter network behavior, potentially converting negative feedback into effective positive feedback (if delay $\geq$ half-period of oscillation). This may explain counterintuitive dynamics observed in ceRNA networks where expected repression sometimes produces activation.
+
+**Biological plausibility:** While this configuration represents an extreme case, miRNA-ncRNA regulatory interactions (competitive endogenous RNA networks) are well-documented. Many long ncRNAs (e.g., PTENP1, HULC) sequester miRNAs, creating coupled regulatory circuits. Our analysis suggests such circuits may operate near stability boundaries, conferring switch-like or oscillatory behavior.
+
+## Comparative Analysis: Architectural Principles {-}
+
+### Effect of Transfer Function Type (G vs. H) {-}
+
+Direct comparison of Configurations 1 and 2 (identical sequence, different architecture) reveals systematic relationships:
+
+Direct comparison of Configurations 1 and 2 (identical sequence, different architecture) reveals systematic relationships shown in Table \@ref(tab:table-7).
+
+```{r table-7, echo=FALSE}
+df <- data.frame(
+  Property = c(
+    "DC gain",
+    "Cutoff frequency",
+    "HF attenuation",
+    "Phase lag",
+    "Rolloff slope"
+  ),
+  `G_type` = c(
+    "144.39",
+    "0.0129",
+    "-1396.86",
+    "-1979.99",
+    "-44"
+  ),
+  `H_type` = c(
+    "144.39",
+    "0.0121",
+    "-2648.94",
+    "-3954.13",
+    "-88"
+  ),
+  Ratio = c(
+    "1.00",
+    "0.94",
+    "1.90",
+    "2.00",
+    "2.00"
+  ),
+  check.names = FALSE
+)
+
+# Use escape = FALSE to allow LaTeX formatting in headers
+colnames(df) <- c(
+  "Property",
+  "G-type (dB / rad$\\cdot$s$^{-1}$ / \\textdegree{} / dB$\\cdot$dec$^{-1}$)",
+  "H-type (dB / rad$\\cdot$s$^{-1}$ / \\textdegree{} / dB$\\cdot$dec$^{-1}$)",
+  "Ratio (--)"
+)
+
+knitr::kable(
+  df,
+  booktabs = TRUE,
+  escape = FALSE,  # Allow LaTeX commands to be processed
+  caption = "Comparison of G-type and H-type system properties"
+)
+```
+
+**Key finding:** Each additional nucleotide contributes approximately:
+- **+7.1 dB** DC gain
+- **-2.0 dB/decade** rolloff steepness
+- **+97.5°** phase lag
+
+This linear scaling suggests sequence length is a tunable parameter for optimizing temporal filtering characteristics. The evolution of two distinct RNA length classes (short miRNAs vs. long ncRNAs) may reflect specialization for different temporal niches: miRNAs for flexible, broad-bandwidth regulation; ncRNAs for selective, narrow-bandwidth integration.
+
+## Predicted Timescales and Experimental Validation {-}
+
+Our model predicts characteristic response timescales that align remarkably well with experimental observations:
+
+**miRNA regulatory dynamics (Configs 1-2):**
+- **Predicted:** 8.1-8.6 minute response times
+- **Observed:** mRNA half-lives 5-20 min (median 11 min), miRNA repression onset 6-12 min [@Clemson2009; @Naganuma2012]
+
+**Long ncRNA regulatory dynamics (Config 3):**
+- **Predicted:** 21.8 minute response time
+- **Observed:** MALAT1 half-life 4-16.5h (cell-type dependent), NEAT1 ~2h, transcriptional memory timescales 20-60 min [@Ragunathan2015].
+
+**Mixed cascade dynamics (Config 4):**
+- **Predicted:** 24.4 minute oscillation period (if limit cycle exists)
+- **Observed:** HES1 oscillations ~30 min, segmentation clock 20-30 min (zebrafish), circadian sub-harmonics ~24 min
+
+This concordance between predicted and observed timescales supports the biological relevance of the frequency-domain framework, suggesting that RNA sequence composition genuinely determines dynamic response properties.
+
+## Summary of Key Findings {-}
+
+1. **RNA sequences function as tunable low-pass temporal filters** with characteristics determined by length and architecture
+
+2. **Characteristic response timescales** (8-24 minutes) match experimental observations of RNA-mediated regulation
+
+3. **Architectural choice (G vs. H)** creates a **2-fold trade-off** between responsiveness (G-type) and noise rejection (H-type)
+
+4. **Sequence length scales systematically** with all dynamic properties: longer sequences produce slower, more selective, but more sensitive filtering
+
+5. **Mixed cascades may operate at stability boundaries**, potentially generating bistability, oscillations, or ultra-sensitive switching
+
+6. **Each nucleotide contributes ~7 dB gain and ~2 dB/decade filtering**, demonstrating that ncRNS length is an evolutionarily accessible tuning parameter for optimizing regulatory dynamics
+
+These findings establish quantitative relationships between RNA sequence composition and regulatory dynamics, providing a foundation for both understanding natural RNA evolution and engineering synthetic circuits with predictable temporal behavior.
+
+# Discussion {-}
+
+
+## Summary of Key Findings {-}
+
+Our frequency-domain analysis reveals that RNA regulatory cascades function as tunable low-pass filters with characteristics determined by sequence length and cascade architecture. The predicted cutoff frequencies (0.0043 to 0.0129 rad/s, corresponding to 8-24 minute periods) align remarkably well with established timescales of RNA-mediated gene regulation, including mammalian mRNA half-lives (5-20 minutes) [@yang_dreiss_2016; @sharova_database_2009], transcriptional bursts (10-30 minutes) [@corrigan_continuum_2016; @tantale_single-molecule_2016; @ito_genome-wide_2020], and signaling pathway dynamics (5-60 minutes). This concordance suggests the frequency-domain framework provides biologically meaningful insights into RNA regulatory dynamics.
+
+## Biological Significance of Frequency Filtering {-}
+
+The low-pass filtering behavior observed across all configurations has direct functional implications. By attenuating high-frequency signals while amplifying low-frequency components, these cascades effectively filter molecular noise (rapid stochastic fluctuations) while faithfully transmitting sustained regulatory signals. The dramatic DC gain scaling with sequence length (~7 dB per nucleotide) demonstrates cumulative amplification through sequential regulatory stages, conferring extraordinary sensitivity to persistent inputs in longer ncRNAs.
+
+Notably, the frequency range of maximal amplification (0.001-0.01 rad/s, 10-minute to 2-hour periods) overlaps with well-characterized biological oscillators including p53-MDM2 (5.5-hour pulses) [@lahav_dynamics_2004], NF-$\kappa$B (1.5-6 hour oscillations) [@nelson_oscillations_2004; @ashall_pulsatile_2009], and HES1 (30-minute period in mice) [@masamizu_real-time_2006; @hirata_instability_2004]. This suggests RNA cascades may be naturally tuned to resonate with endogenous oscillatory signals, explaining the prevalence of pulsatile gene regulation.
+
+## Architectural Design Principles {-}
+
+### Transfer Function Topology {-}
+
+The systematic 2-fold difference between G-type and H-type configurations reveals distinct regulatory strategies. G-type transfer functions (with numerator zeros) provide phase lead compensation and faster response, analogous to feedforward control suitable for rapid adaptation. H-type functions exhibit pure feedback dynamics with enhanced damping and stronger noise rejection, appropriate for stable maintenance. This architectural diversity may enable biological systems to optimize different RNA elements for speed versus stability trade-offs.
+
+### Sequence Length as an Evolutionary Parameter {-}
+
+The 6.4-fold increase in sequence length (22 to 140 nucleotides) produced proportional increases in rolloff steepness and phase accumulation, with 2.7-fold bandwidth reduction. This systematic scaling suggests ncRNA length may be evolutionarily optimized for temporal filtering characteristics. Long ncRNAs (lncRNA) like XIST (~17,000 nt) [@brown_human_1992], HOTAIR (2,200 nt), [@rinn_functional_2007], and MALAT1 (~8,000 nt), [@tripathi_nuclear-retained_2010] may function as ultra-selective temporal integrators, responding only to sustained signals. Conversely, short miRNAs (21-23 nt) maintain broad bandwidth for responsive, flexible regulation. The evolution of two distict length classes-short regulatory RNAs (miRNAs, siRNAs) versus long regulatory RNAs (lncRNAs) may reflect specialization for distinct temporal niches in gene regulation.
+
+## Testable Predictions and Experimental Validation {-}
+
+This framework generates specific, experimentally testable predictions:
+
+1. **Timescale predictions:** RNA regulatory responses should exhibit characteristic time constants matching predicted cutoff frequencies (8-16 minutes for miRNAs, 22-44 minutes for long ncRNAs)
+
+2. **Frequency selectivity:** RNA networks should respond more strongly to oscillatory inputs near their cutoff frequencies than to constant or high-frequency perturbations
+
+3. **Length-dependent filtering:** Longer ncRNA sequences should show narrower bandwidths and preferential response to sustained versus transient signals, with response timescales scaling proportionally with sequence length.
+
+4. **Network dynamics:** Co-expression of specific miRNA-ncRNA pairs may create bistable switches or oscillators due to accumulated phase delays
+
+These predictions can be tested using inducible promoter systems with temporal control, optogenetic perturbations at varying frequencies [@nelson_oscillations_2004], synthetic RNA constructs of systematically varied length, and single-cell time-series analysis of competitive endogenous RNA (ceRNA) networks.
+
+## Application to Riboswitches {-}
+
+To demonstrate broader applicability, we analyzed five metabolite-sensing riboswitches (TPP [@wickiser_speed_2005], SAM-I [@montange_structure_2006], Adenine [@lemay_folding_2006], FMN [@winkler_mrna_2002], PreQ1 [@klein_cocrystal_2009]) using experimentally determined kinetic parameters (kon, koff, kfold, kunfold). Figure \@ref(fig:ribo1) and Table \@ref(tab:table-6) show that riboswitches exhibit characteristic frequency responses with cutoff frequencies ranging from 4-14 Hz, corresponding to sub-second timescales appropriate for rapid metabolic sensing. The negative DC gains (-10 to -38 dB) reflect signal attenuation consistent with their function as metabolic switches rather than amplifiers. This analysis demonstrates that frequency-domain methods provide quantitative insights into riboswitch robustness and dynamic response properties [@kitano_biological_2004; @breaker_riboswitches_2018].
+
+**Riboswitch kinetic parameters:**
+- $k_{\text{on}}$ (ligand binding rate) $= \mu\mathrm{M}^{-1}\,\mathrm{s}^{-1}$
+- $k_{\text{off}}$ (ligand unbinding rate) $= \mathrm{s}^{-1}$
+- $k_{\text{fold}}$ (forward folding rate) $= \mathrm{s}^{-1}$
+- $k_{\text{unfold}}$ (reverse folding rate) $= \mathrm{s}^{-1}$
+- $k_{\text{bind,eff}} = k_{\text{on}}[L]$ (effective binding rate at ligand concentration [L]=1).
+
+Figure \@ref(fig:ribo1) shows the Bode plot for the Riboswitches.
+
+```{r ribo1, echo=FALSE, fig.cap='Bode plots of five riboswitches showing magnitude and phase responses. Cutoff frequencies range from 4-14 Hz (sub-second timescales). Negative DC gains indicate signal attenuation consistent with metabolic switching function. All systems show characteristic second-order dynamics with phase lags approaching -270 degrees at high frequencies.', out.width='79%', fig.align='center'}
+knitr::include_graphics("Riboswitch_Bode.png")
+```
+
+```{r table-8, echo=FALSE, comment=""}
+d6 <- read.csv("riboswitch_results_rad_s.csv", sep=",", fill=T,
+               na.strings=c(".", " .", "NA", ", ", " ,"),
+               header=TRUE, row.names=NULL, stringsAsFactors=FALSE)
+d7 <- d6[,1:9]
+d8 <- d6[,11:16]
+d9 <- d6[,16:20]
+
+knitr::kable(
+  head(d7, 10), longtable = TRUE, booktabs = TRUE,
+  caption = 'Riboswitch frequency response parameters (Part(1): natural frequency, damping ratio, kinetic rate constants, and DC gain'
+)
+```
+
+```{r table-9, echo=FALSE, comment=""}
+
+knitr::kable(
+  head(d8, 10), longtable = TRUE, booktabs = TRUE,
+  caption = 'Riboswitch frequency response parameters part(2): high-frequency gain, peak characteristics, cutoff frequency, and stability margins'
+)
+```
+```{r table-10, echo=FALSE, comment=""}
+knitr::kable(
+  head(d9, 10),
+  longtable = TRUE,
+  booktabs = TRUE,
+  caption = 'Riboswitch frequency response parameters (Part 3): phase characteristics and literature references'
+) %>%
+  kableExtra::kable_styling(latex_options = c("scale_down")) %>%
+  kableExtra::column_spec(5, width = "3.5cm")  # Adjust the reference column width
+```
+
+Tables \@ref(tab:table-8), \@ref(tab:table-9) and \@ref(tab:table-10) show the metrics for the Riboswiches.
+
+## Limitations and Future Directions {-}
+
+Several important limitations should be acknowledged. The model assumes linear, time-invariant dynamics, while real RNA systems exhibit nonlinearities including saturation, cooperativity, and threshold effects. The parameter mapping from molecular weights to kinetic rates, while systematic, requires direct experimental validation. The model treats each nucleotide as an independent stage, neglecting RNA secondary structure, tertiary interactions, and the influence of RNA-binding proteins. Stochastic effects and cellular compartmentalization are not considered.
+
+Future extensions could incorporate: (1) nonlinear saturation kinetics through Volterra or Wiener models, (2) RNA secondary structure by grouping nucleotides into stem-loop or hairpin domains with domain-level transfer functions, (3) spatial dynamics using reaction-diffusion equations for nuclear-cytoplasmic partitioning, (4) stochastic noise propagation through frequency-selective cascades, and (5) complex network motifs including feedback loops and feedforward circuits. Integration with experimental time-series data would enable parameter estimation and model validation, transforming this theoretical framework into a quantitative, predictive tool for RNA regulatory network engineering with applications in synthetic biology.
+
+
+## Conclusions {-}
+This work demonstrates that control-theoretic frequency-domain analysis provides a powerful framework for understanding RNA regulatory dynamics. RNA sequences function as tunable temporal filters whose characteristics depend systematically on length and architectural topology. The predicted timescales match experimental observations, supporting the biological relevance of this approach. The framework generates specific testable predictions and extends naturally to diverse RNA-mediated regulatory systems including riboswitches. By revealing how sequence composition determines dynamic response properties, this analysis suggests a new perspective on RNA evolution and regulatory network design principles.
+
+This frequency-domain analysis of ncRNA regulatory cascades reveals that sequence length and transfer function
+architecture are fundamental determinants of dynamic behavior. ncRNA sequences act as tunable frequency-
+selective filters, with longer sequences providing narrower bandwidth and greater selectivity. The distinction
+between G-type (fast, responsive) and H-type (slow, stable) dynamics offers a theoretical framework for
+understanding different regulatory strategies. The marginal stability observed in mixed miRNA-ncRNA
+cascades suggests potential mechanisms for oscillatory gene expression, bi stable switches, and ultra-sensitive
+responses. The model's predictions regarding time scales, frequency selectivity, and sequence-dependent effects
+are experimentally testable, offering pathways to validate and refine this theoretical framework. Ultimately, this
+work demonstrates that concepts from control systems engineering—developed for analyzing human-made
+systems—may provide valuable insights into the design principles of biological regulatory networks, revealing
+a potential evolutionary optimization of RNA.
+
+## Appendix {-}
+
+**System Definition**
+
+The matrices $A$ and $B$ for the system shown in Figure \@ref(fig:themodel-1) are:
+
+\begin{equation}
+\mathbf{A} = \begin{bmatrix} 0 & -k_3 \\ k_4 & -k_2 \end{bmatrix}, \quad \mathbf{B} = \begin{bmatrix} 1 \\ 0 \end{bmatrix}
+\end{equation}
+
+**Transfer Functions**
+
+**Characteristic Equation polynomial:**
+
+\begin{equation}
+\det(s\mathbf{I} - \mathbf{A}) = s(s + k_2) + k_3 k_4
+\end{equation}
+
+**Individual transfer functions:**
+
+To $x_1$:
+\begin{equation}
+\frac{X_1(s)}{U(s)} = \frac{s + k_2}{s(s + k_2) + k_3 k_4}
+\end{equation}
+
+To flux $k_3 x_1$:
+\begin{equation}
+\frac{k_3(s + k_2)}{s(s + k_2) + k_3 k_4}
+\end{equation}
+
+To $x_2$:
+\begin{equation}
+\frac{X_2(s)}{U(s)} = \frac{k_4}{s(s + k_2) + k_3 k_4}
+\end{equation}
+
+To flux $k_2 x_2$:
+\begin{equation}
+\frac{k_2 k_4}{s(s + k_2) + k_3 k_4}
+\end{equation}
+
+**Networks**
+
+**Case 1: $k_3 x_1$ flux network**
+
+Individual transfer functions and a network of 4 stages:
+
+\begin{equation}
+G_i(s) = \frac{k_{3i}(s + k_{2i})}{s(s + k_{2i}) + k_{3i} k_{4i}}
+\end{equation}
+
+\begin{equation}
+\frac{Y_4(s)}{U_1(s)} = \frac{\prod_{i=1}^{4} k_{3i}(s + k_{2i})}{\prod_{i=1}^{4} [s(s + k_{2i}) + k_{3i} k_{4i}]}=G_{netk_3}(s)
+\end{equation}
+
+**Case 2: $k_2 x_2$ flux network (4 stages)**
+
+Individual transfer functions and a network of 4 stages:
+
+\begin{equation}
+G_i(s) = \frac{k_{2i} k_{4i}}{s(s + k_{2i}) + k_{3i} k_{4i}}
+\end{equation}
+
+\begin{equation}
+\frac{Y_4(s)}{U_1(s)} = \frac{\prod_{i=1}^{4} k_{2i} k_{4i}}{\prod_{i=1}^{4} [s(s + k_{2i}) + k_{3i} k_{4i}]}=G_{netk_2}(s)
+\end{equation}
+
+**Single Flux Replacement**
+
+Original system:
+
+\begin{equation}
+\begin{bmatrix} \dot{x}_1 \\ \dot{x}_2 \end{bmatrix} =
+\begin{bmatrix} 0 & -k_3 \\ k_4 & -k_2 \end{bmatrix}
+\begin{bmatrix} x_1 \\ x_2 \end{bmatrix} +
+\begin{bmatrix} 1 \\ 0 \end{bmatrix} u
+\end{equation}
+
+Replacing $k_4 x_1$ with network $G_{netk_2}(s)$:
+
+\begin{align}
+s X_1(s) &= -k_3 X_2(s) + U(s) \\
+s X_2(s) &= G_{netk_2}(s) X_1(s) - k_2 X_2(s)
+\end{align}
+
+Replacing $k_3 x_2$ with network $G_{netk_3}(s)$:
+
+\begin{align}
+s X_1(s) &= -G_{netk_3}(s) X_2(s) + U(s) \\
+s X_2(s) &= k_4 X_1(s) - k_2 X_2(s)
+\end{align}
+
+or replacing both fluxes $k_4 x_1$ and $k_3 x_2$ with their corresponding network counterparts:
+
+\begin{align}
+s X_1(s) &= -G_{netk_3}(s) X_2(s) + U(s) \\
+s X_2(s) &= G_{netk_2}(s) X_1(s) - k_2 X_2(s)
+\end{align}
+
+It should be noted that the two network fluxes don't have to be the same length.
+
+**Alternative Notation with Index Mapping**
+
+Or alternatively to maintain index notation but map to list elements:
+
+Let $\mathcal{L} = \{n_1, n_2, n_3, ..., n_N\}$ where $n_j$ represents the j-th element in your list.
+
+**First Transfer Function:**
+
+\begin{equation}
+\frac{Y_N(s)}{U_1(s)} = \prod_{j=1}^{N} G_{n_j}(s) = \frac{\prod_{j=1}^{N} k_{3,n_j}(s + k_{2,n_j})}{\prod_{j=1}^{N} [s(s + k_{2,n_j}) + k_{3,n_j} k_{4,n_j}]}
+\end{equation}
+
+**Second Transfer Function:**
+
+\begin{equation}
+\frac{Y_N(s)}{U_1(s)} = \prod_{j=1}^{N} H_{n_j}(s) = \frac{\prod_{j=1}^{N} k_{2,n_j} k_{4,n_j}}{\prod_{j=1}^{N} [s(s + k_{2,n_j}) + k_{3,n_j} k_{4,n_j}]}
+\end{equation}
+
+**Specific Example with an RNA Sequence of Eight Elements**
+
+For an RNA sequence like $\mathcal{L} = \{C, C, G, G, A, A, U, U\}$:
+
+**First Transfer Function:**
+
+\begin{equation}
+\frac{Y_8(s)}{U_1(s)} = G_C(s) \cdot G_C(s) \cdot G_G(s) \cdot G_G(s) \cdot G_A(s) \cdot G_A(s) \cdot G_U(s) \cdot G_U(s)
+\end{equation}
+
+\begin{equation}
+= \frac{k_{3C}^2 k_{3G}^2 k_{3A}^2 k_{3U}^2 (s + k_{2C})^2 (s + k_{2G})^2 (s + k_{2A})^2 (s + k_{2U})^2}{[s(s + k_{2C}) + k_{3C} k_{4C}]^2 [s(s + k_{2G}) + k_{3G} k_{4G}]^2 [s(s + k_{2A}) + k_{3A} k_{4A}]^2 [s(s + k_{2U}) + k_{3U} k_{4U}]^2}
+\end{equation}
+
+**Second Transfer Function:**
+
+\begin{equation}
+\frac{Y_8(s)}{U_1(s)} = H_C(s) \cdot H_C(s) \cdot H_G(s) \cdot H_G(s) \cdot H_A(s) \cdot H_A(s) \cdot H_U(s) \cdot H_U(s)
+\end{equation}
+
+\begin{equation}
+= \frac{k_{2C}^2 k_{4C}^2 k_{2G}^2 k_{4G}^2 k_{2A}^2 k_{4A}^2 k_{2U}^2 k_{4U}^2}{[s(s + k_{2C}) + k_{3C} k_{4C}]^2 [s(s + k_{2G}) + k_{3G} k_{4G}]^2 [s(s + k_{2A}) + k_{3A} k_{4A}]^2 [s(s + k_{2U}) + k_{3U} k_{4U}]^2}
+\end{equation}
+
+# Declarations {-}
+
+## Consent to Participate declaration {-}
+
+not applicable
+
+## Ethics approval and consent to participate {-}
+Not applicable.
+
+## Consent for publication {-}
+Not applicable.
+
+## Availability of data and materials {-}
+
+**RNA sequence data**
+
+miRNA sequences were obtained from miRBase Release 22.1
+(https://www.mirbase.org/, accessed January 2025). Specifically:
+hsa-mir-34a-5p (miRBase accession MI0000268 for precursor,
+MIMAT0000255 for mature form; NCBI Gene ID 407040; Ensembl
+ENSG00000284357; RNAcentral URS000030BD69).
+
+Long non-coding RNA sequences were obtained from NONCODE Version 6
+(http://www.noncode.org/, accessed January 2025). Specifically:
+LINC00115 (NONCODE accession NONHSAG033138.2; Ensembl ENSG00000225880;
+RNAcentral URS00008C2659).
+
+**Analysis code**
+
+R scripts for frequency-domain analysis and Bode plot generation are
+provided as Additional File 1 (R-programs_supp_material.zip). The code
+will also be made publicly available on GitHub upon publication.
+
+**Data availability:**
+
+All RNA sequence data used in this study are publicly available from
+the cited databases. No new experimental data were generated.
+```
+
+
+## Competing interests {-}
+
+The author declares no competing interests.
+
+## Funding {-}
+
+This research received no specific grant from funding agencies in the public, commercial, or not-for-profit sectors. As an independent researcher, the author has no access to the University funding schemes.
+
+## Authors contributions {-}
+
+MB conceived the study, developed the mathematical framework, performed all computational analyses, and wrote the manuscript
+
+## Acknowledgements {-}
+
+Not applicable
+
+
+

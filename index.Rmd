@@ -1,0 +1,17 @@
+--- 
+title: "Endocrine Networks Simulations"
+bibliography: [FRreferences.bib]
+nocite: |
+  @*
+author: "Dr Massoud Boroujerdi"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+biblio-style: apalike
+link-citations: yes
+---
+
+```{r include=FALSE}
+knitr::write_bib(c(.packages(), 'bookdown', 'knitr', 'rmarkdown'), 'packages.bib')
+```

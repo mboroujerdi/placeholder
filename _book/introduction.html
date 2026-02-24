@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Endocrine Networks Simulations</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Endocrine Networks Simulations" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Endocrine Networks Simulations" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Dr Massoud Boroujerdi" />
+
+
+<meta name="date" content="2026-02-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Endocrine network</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction {#}</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#mathematical-framework"><i class="fa fa-check"></i><b>1.1</b> Mathematical Framework</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="introduction.html"><a href="introduction.html#second-order-negative-feedback-model"><i class="fa fa-check"></i><b>1.1.1</b> Second-Order Negative Feedback Model</a></li>
+<li class="chapter" data-level="1.1.2" data-path="introduction.html"><a href="introduction.html#transfer-function-formulation"><i class="fa fa-check"></i><b>1.1.2</b> Transfer Function Formulation</a></li>
+<li class="chapter" data-level="1.1.3" data-path="introduction.html"><a href="introduction.html#g-type-and-h-type-transfer-functions"><i class="fa fa-check"></i><b>1.1.3</b> G-Type and H-Type Transfer Functions</a></li>
+<li class="chapter" data-level="1.1.4" data-path="introduction.html"><a href="introduction.html#network-composition"><i class="fa fa-check"></i><b>1.1.4</b> Network Composition</a></li>
+<li class="chapter" data-level="1.1.5" data-path="introduction.html"><a href="introduction.html#parameter-assignment-from-mcr"><i class="fa fa-check"></i><b>1.1.5</b> Parameter Assignment from MCR</a></li>
+<li class="chapter" data-level="1.1.6" data-path="introduction.html"><a href="introduction.html#time-domain-solutions-via-inverse-laplace-transform"><i class="fa fa-check"></i><b>1.1.6</b> Time-Domain Solutions via Inverse Laplace Transform</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#frequency-domain-analysis"><i class="fa fa-check"></i><b>1.2</b> Frequency-Domain Analysis</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="introduction.html"><a href="introduction.html#bode-plot-construction"><i class="fa fa-check"></i><b>1.2.1</b> Bode Plot Construction</a></li>
+<li class="chapter" data-level="1.2.2" data-path="introduction.html"><a href="introduction.html#performance-metrics"><i class="fa fa-check"></i><b>1.2.2</b> Performance Metrics</a></li>
+<li class="chapter" data-level="1.2.3" data-path="introduction.html"><a href="introduction.html#stability-analysis"><i class="fa fa-check"></i><b>1.2.3</b> Stability Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#computational-implementation"><i class="fa fa-check"></i><b>1.3</b> Computational Implementation</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="introduction.html"><a href="introduction.html#software-and-packages"><i class="fa fa-check"></i><b>1.3.1</b> Software and Packages</a></li>
+<li class="chapter" data-level="1.3.2" data-path="introduction.html"><a href="introduction.html#algorithm-network-transfer-function"><i class="fa fa-check"></i><b>1.3.2</b> Algorithm: Network Transfer Function</a></li>
+<li class="chapter" data-level="1.3.3" data-path="introduction.html"><a href="introduction.html#algorithm-time-domain-simulation"><i class="fa fa-check"></i><b>1.3.3</b> Algorithm: Time-Domain Simulation</a></li>
+<li class="chapter" data-level="1.3.4" data-path="introduction.html"><a href="introduction.html#algorithm-frequency-response"><i class="fa fa-check"></i><b>1.3.4</b> Algorithm: Frequency Response</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#validation-approach"><i class="fa fa-check"></i><b>1.4</b> Validation Approach</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="introduction.html"><a href="introduction.html#comparison-with-known-systems"><i class="fa fa-check"></i><b>1.4.1</b> Comparison with Known Systems</a></li>
+<li class="chapter" data-level="1.4.2" data-path="introduction.html"><a href="introduction.html#sensitivity-analysis"><i class="fa fa-check"></i><b>1.4.2</b> Sensitivity Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#data-sources"><i class="fa fa-check"></i><b>1.5</b> Data Sources</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="introduction.html"><a href="introduction.html#metabolic-clearance-rates"><i class="fa fa-check"></i><b>1.5.1</b> Metabolic Clearance Rates</a></li>
+<li class="chapter" data-level="1.5.2" data-path="introduction.html"><a href="introduction.html#network-topologies"><i class="fa fa-check"></i><b>1.5.2</b> Network Topologies</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="introduction.html"><a href="introduction.html#reporting-standards"><i class="fa fa-check"></i><b>1.6</b> Reporting Standards</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Endocrine Networks Simulations</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Endocrine Networks Simulations</h1>
+<p class="author"><em>Dr Massoud Boroujerdi</em></p>
+<p class="date"><em>2026-02-14</em></p>
+</div>
+<div id="introduction" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">1</span> Introduction {#}<a href="introduction.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="mathematical-framework" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Mathematical Framework<a href="introduction.html#mathematical-framework" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="second-order-negative-feedback-model" class="section level3 hasAnchor" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Second-Order Negative Feedback Model<a href="introduction.html#second-order-negative-feedback-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The fundamental building block of our network model is the second-order negative feedback compartmental system <span class="citation">(<a href="#ref-Boroujerdi2013">M. A. Boroujerdi and Schmidt 2013</a>; <a href="#ref-Boroujerdi2024">M. Boroujerdi 2024</a>)</span>. Each element (substrate or hormone) is represented by two compartments: S (substrate/hormone) and C (controller), governed by the differential equations:</p>
+<p><span class="math display">\[\frac{dS}{dt} = R_a - k_3C\]</span></p>
+<p><span class="math display">\[\frac{dC}{dt} = k_4S - k_2C\]</span></p>
+<p>At steady state, the production rate relates to concentration via the metabolic clearance rate (MCR):</p>
+<p><span class="math display">\[R_a = \frac{k_3k_4}{k_2}S = \text{MCR} \cdot S\]</span></p>
+<p>where <span class="math inline">\(\text{MCR} = \frac{k_3k_4}{k_2}\)</span> with dimensions of time<span class="math inline">\(^{-1}\)</span>.</p>
+</div>
+<div id="transfer-function-formulation" class="section level3 hasAnchor" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> Transfer Function Formulation<a href="introduction.html#transfer-function-formulation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The system parameters relate to the standard second-order differential equation parameters:
+- Natural frequency: <span class="math inline">\(\omega_n = \sqrt{k_3k_4}\)</span>
+- Damping ratio: <span class="math inline">\(\zeta = \frac{k_2}{2\omega_n}\)</span></p>
+<p>Equivalently: <span class="math inline">\(k_2 = 2\zeta\omega_n\)</span> and <span class="math inline">\(k_3 = k_4 = \omega_n\)</span>.</p>
+<p>The state-space representation is:</p>
+<p><span class="math display">\[\dot{\mathbf{x}} = A\mathbf{x} + Bu\]</span></p>
+<p><span class="math display">\[y = C\mathbf{x}\]</span></p>
+<p>where:</p>
+<p><span class="math display">\[A = \begin{bmatrix} 0 &amp; -k_3 \\ k_4 &amp; -k_2 \end{bmatrix}, \quad B = \begin{bmatrix} 1 \\ 0 \end{bmatrix}\]</span></p>
+</div>
+<div id="g-type-and-h-type-transfer-functions" class="section level3 hasAnchor" number="1.1.3">
+<h3><span class="header-section-number">1.1.3</span> G-Type and H-Type Transfer Functions<a href="introduction.html#g-type-and-h-type-transfer-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Two transfer function architectures are considered, corresponding to different controller flux connections:</p>
+<p><strong>G-type (feed-forward):</strong> Uses the <span class="math inline">\(k_3C\)</span> flux, yielding:</p>
+<p><span class="math display">\[G_i(s) = \frac{k_{3i}(s + k_{2i})}{s(s + k_{2i}) + k_{3i}k_{4i}}\]</span></p>
+<p>This transfer function includes a zero at <span class="math inline">\(s = -k_{2i}\)</span>, providing phase lead compensation and faster response.</p>
+<p><strong>H-type (feedback):</strong> Uses the <span class="math inline">\(k_2C\)</span> flux, yielding:</p>
+<p><span class="math display">\[H_i(s) = \frac{k_{2i}k_{4i}}{s(s + k_{2i}) + k_{3i}k_{4i}}\]</span></p>
+<p>This transfer function has no zeros, resulting in pure lag behavior with enhanced damping and stronger noise rejection.</p>
+</div>
+<div id="network-composition" class="section level3 hasAnchor" number="1.1.4">
+<h3><span class="header-section-number">1.1.4</span> Network Composition<a href="introduction.html#network-composition" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For a network of <span class="math inline">\(N\)</span> elements, the overall transfer function is obtained by cascade multiplication:</p>
+<p><span class="math display">\[G_{\text{network}}(s) = \prod_{i=1}^{N} T_i(s)\]</span></p>
+<p>where <span class="math inline">\(T_i(s)\)</span> is either <span class="math inline">\(G_i(s)\)</span> or <span class="math inline">\(H_i(s)\)</span> depending on the architecture assignment.</p>
+<p>For networks with feedback loops, the closed-loop transfer function is:</p>
+<p><span class="math display">\[G_{\text{closed}}(s) = \frac{G_{\text{forward}}(s)}{1 + G_{\text{forward}}(s)G_{\text{feedback}}(s)}\]</span></p>
+</div>
+<div id="parameter-assignment-from-mcr" class="section level3 hasAnchor" number="1.1.5">
+<h3><span class="header-section-number">1.1.5</span> Parameter Assignment from MCR<a href="introduction.html#parameter-assignment-from-mcr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For each element <span class="math inline">\(i\)</span> representing a substrate or hormone:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Obtain MCR:</strong> From literature or experimental measurements (units: time<span class="math inline">\(^{-1}\)</span>)</p></li>
+<li><p><strong>Compute natural frequency:</strong>
+<span class="math display">\[\omega_{n,i} = \text{MCR}_i \cdot \text{scaling factor}\]</span></p>
+<p>The scaling factor relates MCR to the characteristic frequency of the system. For simplicity, we use <span class="math inline">\(\omega_{n,i} = \text{MCR}_i\)</span> as a first approximation.</p></li>
+<li><p><strong>Assign damping ratio:</strong></p>
+<ul>
+<li>For critically damped systems: <span class="math inline">\(\zeta_i = 1.0\)</span></li>
+<li>For underdamped systems (potential oscillations): <span class="math inline">\(\zeta_i = 0.5\)</span> to <span class="math inline">\(0.7\)</span></li>
+<li>From experimental data when available</li>
+</ul></li>
+<li><p><strong>Calculate rate constants:</strong>
+<span class="math display">\[k_{2i} = 2\zeta_i\omega_{n,i}\]</span>
+<span class="math display">\[k_{3i} = k_{4i} = \omega_{n,i}\]</span></p></li>
+</ol>
+</div>
+<div id="time-domain-solutions-via-inverse-laplace-transform" class="section level3 hasAnchor" number="1.1.6">
+<h3><span class="header-section-number">1.1.6</span> Time-Domain Solutions via Inverse Laplace Transform<a href="introduction.html#time-domain-solutions-via-inverse-laplace-transform" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For step input <span class="math inline">\(u(t) = u_0 \cdot \mathbb{1}(t)\)</span> (unit step function), the output in the time domain is obtained via inverse Laplace transform:</p>
+<p><span class="math display">\[y(t) = \mathcal{L}^{-1}\left\{G(s) \cdot \frac{u_0}{s}\right\}\]</span></p>
+<p>For a second-order system with transfer function:</p>
+<p><span class="math display">\[G(s) = \frac{\omega_n^2}{s^2 + 2\zeta\omega_n s + \omega_n^2}\]</span></p>
+<p>The analytical solution for a unit step input depends on damping:</p>
+<p><strong>Underdamped case</strong> (<span class="math inline">\(\zeta &lt; 1\)</span>):</p>
+<p><span class="math display">\[y(t) = 1 - \frac{e^{-\zeta\omega_n t}}{\sqrt{1-\zeta^2}} \sin\left(\omega_d t + \phi\right)\]</span></p>
+<p>where <span class="math inline">\(\omega_d = \omega_n\sqrt{1-\zeta^2}\)</span> (damped natural frequency) and <span class="math inline">\(\phi = \arctan\left(\frac{\sqrt{1-\zeta^2}}{\zeta}\right)\)</span>.</p>
+<p><strong>Critically damped case</strong> (<span class="math inline">\(\zeta = 1\)</span>):</p>
+<p><span class="math display">\[y(t) = 1 - e^{-\omega_n t}(1 + \omega_n t)\]</span></p>
+<p><strong>Overdamped case</strong> (<span class="math inline">\(\zeta &gt; 1\)</span>):</p>
+<p><span class="math display">\[y(t) = 1 - \frac{1}{2\omega_n\sqrt{\zeta^2-1}}\left[(\zeta + \sqrt{\zeta^2-1})e^{s_1 t} - (\zeta - \sqrt{\zeta^2-1})e^{s_2 t}\right]\]</span></p>
+<p>where <span class="math inline">\(s_1 = -\omega_n(\zeta + \sqrt{\zeta^2-1})\)</span> and <span class="math inline">\(s_2 = -\omega_n(\zeta - \sqrt{\zeta^2-1})\)</span>.</p>
+</div>
+</div>
+<div id="frequency-domain-analysis" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Frequency-Domain Analysis<a href="introduction.html#frequency-domain-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="bode-plot-construction" class="section level3 hasAnchor" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Bode Plot Construction<a href="introduction.html#bode-plot-construction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Frequency response is evaluated by substituting <span class="math inline">\(s = j\omega\)</span> into the transfer function:</p>
+<p><span class="math display">\[H(j\omega) = G(j\omega)\]</span></p>
+<p>The magnitude (in dB) and phase are:</p>
+<p><span class="math display">\[|H(j\omega)|_{\text{dB}} = 20\log_{10}|H(j\omega)|\]</span></p>
+<p><span class="math display">\[\angle H(j\omega) = \arctan\left(\frac{\text{Im}[H(j\omega)]}{\text{Re}[H(j\omega)]}\right)\]</span></p>
+<p>Bode plots are generated by evaluating <span class="math inline">\(H(j\omega)\)</span> across a logarithmic frequency range (typically <span class="math inline">\(10^{-3}\)</span> to <span class="math inline">\(10^{3}\)</span> rad/time-unit).</p>
+</div>
+<div id="performance-metrics" class="section level3 hasAnchor" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Performance Metrics<a href="introduction.html#performance-metrics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>From the Bode plot, we extract:</p>
+<ol style="list-style-type: decimal">
+<li><strong>DC gain:</strong> <span class="math inline">\(|H(j\omega)|_{\text{dB}}\)</span> at <span class="math inline">\(\omega \to 0\)</span></li>
+<li><strong>Cutoff frequency (<span class="math inline">\(\omega_c\)</span>):</strong> Frequency where <span class="math inline">\(|H(j\omega)|_{\text{dB}} = |H(0)|_{\text{dB}} - 3\)</span> dB</li>
+<li><strong>Bandwidth:</strong> Range from DC to <span class="math inline">\(\omega_c\)</span></li>
+<li><strong>High-frequency attenuation:</strong> <span class="math inline">\(|H(j\omega)|_{\text{dB}}\)</span> at <span class="math inline">\(\omega \to \infty\)</span></li>
+<li><strong>Phase margin:</strong> Phase at gain crossover frequency</li>
+<li><strong>Gain margin:</strong> Gain at phase crossover frequency (<span class="math inline">\(-180°\)</span>)</li>
+</ol>
+<p>These metrics directly translate to biological properties:
+- <strong>Cutoff frequency</strong> → characteristic response time (<span class="math inline">\(\tau \approx 2\pi/\omega_c\)</span>)
+- <strong>Bandwidth</strong> → ability to track time-varying signals
+- <strong>High-frequency attenuation</strong> → noise rejection capability
+- <strong>Phase margin</strong> → stability reserve</p>
+</div>
+<div id="stability-analysis" class="section level3 hasAnchor" number="1.2.3">
+<h3><span class="header-section-number">1.2.3</span> Stability Analysis<a href="introduction.html#stability-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Network stability is determined by the locations of the poles of <span class="math inline">\(G_{\text{network}}(s)\)</span>:</p>
+<p><strong>Routh-Hurwitz criterion:</strong> System is stable if all coefficients of the characteristic polynomial are positive and all elements in the first column of the Routh array are positive.</p>
+<p><strong>Eigenvalue criterion:</strong> For state-space representation, compute eigenvalues <span class="math inline">\(\lambda\)</span> of matrix <span class="math inline">\(A\)</span>. System is stable if <span class="math inline">\(\text{Re}(\lambda_i) &lt; 0\)</span> for all <span class="math inline">\(i\)</span>.</p>
+<p><strong>Nyquist criterion:</strong> System is stable if the Nyquist plot of the open-loop transfer function <span class="math inline">\(L(j\omega) = G_{\text{forward}}(j\omega)G_{\text{feedback}}(j\omega)\)</span> does not encircle the point <span class="math inline">\((-1, 0)\)</span>.</p>
+</div>
+</div>
+<div id="computational-implementation" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Computational Implementation<a href="introduction.html#computational-implementation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="software-and-packages" class="section level3 hasAnchor" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Software and Packages<a href="introduction.html#software-and-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>All simulations were performed in R (version 4.3.0 or higher). Key packages:</p>
+<ul>
+<li><code>deSolve</code>: Numerical solution of differential equations <span class="citation">(<a href="#ref-Soetaert2010">Soetaert, Petzoldt, and Setzer 2010</a>)</span></li>
+<li><code>control</code>: Control systems analysis (if available; alternatively custom implementation)</li>
+<li><code>signal</code>: Signal processing and frequency analysis <span class="citation">(<a href="#ref-Signal">Signal developers 2023</a>)</span></li>
+<li><code>ggplot2</code>: Data visualization <span class="citation">(<a href="#ref-Wickham2016">Wickham 2016</a>)</span></li>
+<li><code>bookdown</code>: Document preparation <span class="citation">(<a href="#ref-Xie2016">Xie 2016</a>)</span></li>
+</ul>
+</div>
+<div id="algorithm-network-transfer-function" class="section level3 hasAnchor" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Algorithm: Network Transfer Function<a href="introduction.html#algorithm-network-transfer-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="introduction.html#cb2-1" tabindex="-1"></a><span class="co"># Pseudocode for network transfer function construction</span></span>
+<span id="cb2-2"><a href="introduction.html#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="introduction.html#cb2-3" tabindex="-1"></a>network_tf <span class="ot">&lt;-</span> <span class="cf">function</span>(elements, architecture) {</span>
+<span id="cb2-4"><a href="introduction.html#cb2-4" tabindex="-1"></a>  <span class="co"># elements: list of (omega_n, zeta, MCR) for each node</span></span>
+<span id="cb2-5"><a href="introduction.html#cb2-5" tabindex="-1"></a>  <span class="co"># architecture: vector of &quot;G&quot; or &quot;H&quot; for each node</span></span>
+<span id="cb2-6"><a href="introduction.html#cb2-6" tabindex="-1"></a>  </span>
+<span id="cb2-7"><a href="introduction.html#cb2-7" tabindex="-1"></a>  <span class="co"># Initialize numerator and denominator</span></span>
+<span id="cb2-8"><a href="introduction.html#cb2-8" tabindex="-1"></a>  num <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb2-9"><a href="introduction.html#cb2-9" tabindex="-1"></a>  den <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb2-10"><a href="introduction.html#cb2-10" tabindex="-1"></a>  </span>
+<span id="cb2-11"><a href="introduction.html#cb2-11" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(elements)) {</span>
+<span id="cb2-12"><a href="introduction.html#cb2-12" tabindex="-1"></a>    omega_n <span class="ot">&lt;-</span> elements[[i]]<span class="sc">$</span>omega_n</span>
+<span id="cb2-13"><a href="introduction.html#cb2-13" tabindex="-1"></a>    zeta <span class="ot">&lt;-</span> elements[[i]]<span class="sc">$</span>zeta</span>
+<span id="cb2-14"><a href="introduction.html#cb2-14" tabindex="-1"></a>    </span>
+<span id="cb2-15"><a href="introduction.html#cb2-15" tabindex="-1"></a>    k2 <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> zeta <span class="sc">*</span> omega_n</span>
+<span id="cb2-16"><a href="introduction.html#cb2-16" tabindex="-1"></a>    k3 <span class="ot">&lt;-</span> omega_n</span>
+<span id="cb2-17"><a href="introduction.html#cb2-17" tabindex="-1"></a>    k4 <span class="ot">&lt;-</span> omega_n</span>
+<span id="cb2-18"><a href="introduction.html#cb2-18" tabindex="-1"></a>    </span>
+<span id="cb2-19"><a href="introduction.html#cb2-19" tabindex="-1"></a>    <span class="cf">if</span> (architecture[i] <span class="sc">==</span> <span class="st">&quot;G&quot;</span>) {</span>
+<span id="cb2-20"><a href="introduction.html#cb2-20" tabindex="-1"></a>      <span class="co"># G-type: numerator has (s + k2)</span></span>
+<span id="cb2-21"><a href="introduction.html#cb2-21" tabindex="-1"></a>      num_i <span class="ot">&lt;-</span> <span class="fu">c</span>(k3, k3<span class="sc">*</span>k2)</span>
+<span id="cb2-22"><a href="introduction.html#cb2-22" tabindex="-1"></a>      den_i <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, k2, k3<span class="sc">*</span>k4)</span>
+<span id="cb2-23"><a href="introduction.html#cb2-23" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb2-24"><a href="introduction.html#cb2-24" tabindex="-1"></a>      <span class="co"># H-type: numerator is constant</span></span>
+<span id="cb2-25"><a href="introduction.html#cb2-25" tabindex="-1"></a>      num_i <span class="ot">&lt;-</span> <span class="fu">c</span>(k2<span class="sc">*</span>k4)</span>
+<span id="cb2-26"><a href="introduction.html#cb2-26" tabindex="-1"></a>      den_i <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, k2, k3<span class="sc">*</span>k4)</span>
+<span id="cb2-27"><a href="introduction.html#cb2-27" tabindex="-1"></a>    }</span>
+<span id="cb2-28"><a href="introduction.html#cb2-28" tabindex="-1"></a>    </span>
+<span id="cb2-29"><a href="introduction.html#cb2-29" tabindex="-1"></a>    <span class="co"># Convolve (multiply polynomials)</span></span>
+<span id="cb2-30"><a href="introduction.html#cb2-30" tabindex="-1"></a>    num <span class="ot">&lt;-</span> <span class="fu">convolve</span>(num, <span class="fu">rev</span>(num_i))</span>
+<span id="cb2-31"><a href="introduction.html#cb2-31" tabindex="-1"></a>    den <span class="ot">&lt;-</span> <span class="fu">convolve</span>(den, <span class="fu">rev</span>(den_i))</span>
+<span id="cb2-32"><a href="introduction.html#cb2-32" tabindex="-1"></a>  }</span>
+<span id="cb2-33"><a href="introduction.html#cb2-33" tabindex="-1"></a>  </span>
+<span id="cb2-34"><a href="introduction.html#cb2-34" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">num =</span> num, <span class="at">den =</span> den))</span>
+<span id="cb2-35"><a href="introduction.html#cb2-35" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="algorithm-time-domain-simulation" class="section level3 hasAnchor" number="1.3.3">
+<h3><span class="header-section-number">1.3.3</span> Algorithm: Time-Domain Simulation<a href="introduction.html#algorithm-time-domain-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For network simulation with feedback:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introduction.html#cb3-1" tabindex="-1"></a><span class="co"># Define ODE system</span></span>
+<span id="cb3-2"><a href="introduction.html#cb3-2" tabindex="-1"></a>network_ode <span class="ot">&lt;-</span> <span class="cf">function</span>(t, x, params) {</span>
+<span id="cb3-3"><a href="introduction.html#cb3-3" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fu">length</span>(x) <span class="sc">/</span> <span class="dv">2</span>  <span class="co"># Number of elements</span></span>
+<span id="cb3-4"><a href="introduction.html#cb3-4" tabindex="-1"></a>  </span>
+<span id="cb3-5"><a href="introduction.html#cb3-5" tabindex="-1"></a>  dxdt <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">2</span><span class="sc">*</span>N)</span>
+<span id="cb3-6"><a href="introduction.html#cb3-6" tabindex="-1"></a>  </span>
+<span id="cb3-7"><a href="introduction.html#cb3-7" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N) {</span>
+<span id="cb3-8"><a href="introduction.html#cb3-8" tabindex="-1"></a>    S_i <span class="ot">&lt;-</span> x[<span class="dv">2</span><span class="sc">*</span>i <span class="sc">-</span> <span class="dv">1</span>]</span>
+<span id="cb3-9"><a href="introduction.html#cb3-9" tabindex="-1"></a>    C_i <span class="ot">&lt;-</span> x[<span class="dv">2</span><span class="sc">*</span>i]</span>
+<span id="cb3-10"><a href="introduction.html#cb3-10" tabindex="-1"></a>    </span>
+<span id="cb3-11"><a href="introduction.html#cb3-11" tabindex="-1"></a>    <span class="co"># Substrate compartment</span></span>
+<span id="cb3-12"><a href="introduction.html#cb3-12" tabindex="-1"></a>    dxdt[<span class="dv">2</span><span class="sc">*</span>i <span class="sc">-</span> <span class="dv">1</span>] <span class="ot">&lt;-</span> params<span class="sc">$</span>Ra[i] <span class="sc">-</span> params<span class="sc">$</span>k3[i] <span class="sc">*</span> C_i</span>
+<span id="cb3-13"><a href="introduction.html#cb3-13" tabindex="-1"></a>    </span>
+<span id="cb3-14"><a href="introduction.html#cb3-14" tabindex="-1"></a>    <span class="co"># Controller compartment</span></span>
+<span id="cb3-15"><a href="introduction.html#cb3-15" tabindex="-1"></a>    dxdt[<span class="dv">2</span><span class="sc">*</span>i] <span class="ot">&lt;-</span> params<span class="sc">$</span>k4[i] <span class="sc">*</span> S_i <span class="sc">-</span> params<span class="sc">$</span>k2[i] <span class="sc">*</span> C_i</span>
+<span id="cb3-16"><a href="introduction.html#cb3-16" tabindex="-1"></a>    </span>
+<span id="cb3-17"><a href="introduction.html#cb3-17" tabindex="-1"></a>    <span class="co"># Add feedback terms from other elements</span></span>
+<span id="cb3-18"><a href="introduction.html#cb3-18" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N) {</span>
+<span id="cb3-19"><a href="introduction.html#cb3-19" tabindex="-1"></a>      <span class="cf">if</span> (params<span class="sc">$</span>feedback[i, j] <span class="sc">!=</span> <span class="dv">0</span>) {</span>
+<span id="cb3-20"><a href="introduction.html#cb3-20" tabindex="-1"></a>        dxdt[<span class="dv">2</span><span class="sc">*</span>i] <span class="ot">&lt;-</span> dxdt[<span class="dv">2</span><span class="sc">*</span>i] <span class="sc">+</span> params<span class="sc">$</span>feedback[i, j] <span class="sc">*</span> x[<span class="dv">2</span><span class="sc">*</span>j <span class="sc">-</span> <span class="dv">1</span>]</span>
+<span id="cb3-21"><a href="introduction.html#cb3-21" tabindex="-1"></a>      }</span>
+<span id="cb3-22"><a href="introduction.html#cb3-22" tabindex="-1"></a>    }</span>
+<span id="cb3-23"><a href="introduction.html#cb3-23" tabindex="-1"></a>  }</span>
+<span id="cb3-24"><a href="introduction.html#cb3-24" tabindex="-1"></a>  </span>
+<span id="cb3-25"><a href="introduction.html#cb3-25" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(dxdt))</span>
+<span id="cb3-26"><a href="introduction.html#cb3-26" tabindex="-1"></a>}</span>
+<span id="cb3-27"><a href="introduction.html#cb3-27" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="introduction.html#cb3-28" tabindex="-1"></a><span class="co"># Solve</span></span>
+<span id="cb3-29"><a href="introduction.html#cb3-29" tabindex="-1"></a><span class="fu">library</span>(deSolve)</span>
+<span id="cb3-30"><a href="introduction.html#cb3-30" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">ode</span>(<span class="at">y =</span> initial_conditions, </span>
+<span id="cb3-31"><a href="introduction.html#cb3-31" tabindex="-1"></a>           <span class="at">times =</span> time_seq, </span>
+<span id="cb3-32"><a href="introduction.html#cb3-32" tabindex="-1"></a>           <span class="at">func =</span> network_ode, </span>
+<span id="cb3-33"><a href="introduction.html#cb3-33" tabindex="-1"></a>           <span class="at">parms =</span> parameters)</span></code></pre></div>
+</div>
+<div id="algorithm-frequency-response" class="section level3 hasAnchor" number="1.3.4">
+<h3><span class="header-section-number">1.3.4</span> Algorithm: Frequency Response<a href="introduction.html#algorithm-frequency-response" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="introduction.html#cb4-1" tabindex="-1"></a><span class="co"># Compute frequency response</span></span>
+<span id="cb4-2"><a href="introduction.html#cb4-2" tabindex="-1"></a>freq_response <span class="ot">&lt;-</span> <span class="cf">function</span>(tf, freq_range) {</span>
+<span id="cb4-3"><a href="introduction.html#cb4-3" tabindex="-1"></a>  s <span class="ot">&lt;-</span> <span class="dv">1</span><span class="dt">i</span> <span class="sc">*</span> freq_range</span>
+<span id="cb4-4"><a href="introduction.html#cb4-4" tabindex="-1"></a>  </span>
+<span id="cb4-5"><a href="introduction.html#cb4-5" tabindex="-1"></a>  H <span class="ot">&lt;-</span> <span class="fu">sapply</span>(s, <span class="cf">function</span>(si) {</span>
+<span id="cb4-6"><a href="introduction.html#cb4-6" tabindex="-1"></a>    num_val <span class="ot">&lt;-</span> <span class="fu">polyval</span>(tf<span class="sc">$</span>num, si)</span>
+<span id="cb4-7"><a href="introduction.html#cb4-7" tabindex="-1"></a>    den_val <span class="ot">&lt;-</span> <span class="fu">polyval</span>(tf<span class="sc">$</span>den, si)</span>
+<span id="cb4-8"><a href="introduction.html#cb4-8" tabindex="-1"></a>    <span class="fu">return</span>(num_val <span class="sc">/</span> den_val)</span>
+<span id="cb4-9"><a href="introduction.html#cb4-9" tabindex="-1"></a>  })</span>
+<span id="cb4-10"><a href="introduction.html#cb4-10" tabindex="-1"></a>  </span>
+<span id="cb4-11"><a href="introduction.html#cb4-11" tabindex="-1"></a>  magnitude_dB <span class="ot">&lt;-</span> <span class="dv">20</span> <span class="sc">*</span> <span class="fu">log10</span>(<span class="fu">abs</span>(H))</span>
+<span id="cb4-12"><a href="introduction.html#cb4-12" tabindex="-1"></a>  phase_deg <span class="ot">&lt;-</span> <span class="fu">atan2</span>(<span class="fu">Im</span>(H), <span class="fu">Re</span>(H)) <span class="sc">*</span> <span class="dv">180</span> <span class="sc">/</span> pi</span>
+<span id="cb4-13"><a href="introduction.html#cb4-13" tabindex="-1"></a>  </span>
+<span id="cb4-14"><a href="introduction.html#cb4-14" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">data.frame</span>(</span>
+<span id="cb4-15"><a href="introduction.html#cb4-15" tabindex="-1"></a>    <span class="at">freq =</span> freq_range,</span>
+<span id="cb4-16"><a href="introduction.html#cb4-16" tabindex="-1"></a>    <span class="at">magnitude_dB =</span> magnitude_dB,</span>
+<span id="cb4-17"><a href="introduction.html#cb4-17" tabindex="-1"></a>    <span class="at">phase_deg =</span> phase_deg</span>
+<span id="cb4-18"><a href="introduction.html#cb4-18" tabindex="-1"></a>  ))</span>
+<span id="cb4-19"><a href="introduction.html#cb4-19" tabindex="-1"></a>}</span>
+<span id="cb4-20"><a href="introduction.html#cb4-20" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="introduction.html#cb4-21" tabindex="-1"></a><span class="co"># Helper: polynomial evaluation</span></span>
+<span id="cb4-22"><a href="introduction.html#cb4-22" tabindex="-1"></a>polyval <span class="ot">&lt;-</span> <span class="cf">function</span>(p, x) {</span>
+<span id="cb4-23"><a href="introduction.html#cb4-23" tabindex="-1"></a>  <span class="fu">sum</span>(p <span class="sc">*</span> x<span class="sc">^</span>((<span class="fu">length</span>(p)<span class="sc">-</span><span class="dv">1</span>)<span class="sc">:</span><span class="dv">0</span>))</span>
+<span id="cb4-24"><a href="introduction.html#cb4-24" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+</div>
+<div id="validation-approach" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Validation Approach<a href="introduction.html#validation-approach" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="comparison-with-known-systems" class="section level3 hasAnchor" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Comparison with Known Systems<a href="introduction.html#comparison-with-known-systems" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Model predictions are validated against experimental data from well-characterized systems:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Glucose-insulin system:</strong>
+<ul>
+<li>Oral glucose tolerance test (OGTT) data</li>
+<li>Ultradian oscillation period (~90 min)</li>
+<li>Insulin clearance rate (~5 min half-life)</li>
+</ul></li>
+<li><strong>HPA axis (cortisol):</strong>
+<ul>
+<li>Cortisol circadian rhythm</li>
+<li>Response to ACTH stimulation</li>
+<li>Dexamethasone suppression dynamics</li>
+</ul></li>
+<li><strong>Thyroid axis:</strong>
+<ul>
+<li>TSH response to TRH stimulation</li>
+<li>T4 and T3 half-lives (7 days and 1 day, respectively)</li>
+<li>Levothyroxine dose-response curves</li>
+</ul></li>
+</ol>
+</div>
+<div id="sensitivity-analysis" class="section level3 hasAnchor" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> Sensitivity Analysis<a href="introduction.html#sensitivity-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Parameter sensitivity is assessed by:</p>
+<ol style="list-style-type: decimal">
+<li><strong>One-at-a-time (OAT):</strong> Vary each parameter individually by ±20% while holding others constant</li>
+<li><strong>Monte Carlo:</strong> Random sampling from parameter distributions, compute output statistics</li>
+<li><strong>Sobol indices:</strong> Variance-based sensitivity analysis to quantify parameter importance</li>
+</ol>
+</div>
+</div>
+<div id="data-sources" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> Data Sources<a href="introduction.html#data-sources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="metabolic-clearance-rates" class="section level3 hasAnchor" number="1.5.1">
+<h3><span class="header-section-number">1.5.1</span> Metabolic Clearance Rates<a href="introduction.html#metabolic-clearance-rates" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>MCR values are obtained from published literature and pharmacokinetic databases:</p>
+<ul>
+<li><strong>Glucose:</strong> Measured via glucose clamp studies <span class="citation">(<a href="#ref-DeFronzo1979">DeFronzo, Tobin, and Andres 1979</a>)</span></li>
+<li><strong>Insulin:</strong> From C-peptide kinetics or insulin infusion studies <span class="citation">(<a href="#ref-Polonsky1986">Polonsky and Rubenstein 1984</a>)</span></li>
+<li><strong>Cortisol:</strong> From tracer dilution studies <span class="citation">(<a href="#ref-Rosenfield1971">Rosenfield et al. 1971</a>)</span></li>
+<li><strong>Thyroid hormones:</strong> From radiotracer kinetics <span class="citation">(<a href="#ref-Cavalieri1984">Cavalieri 1984</a>)</span></li>
+<li><strong>Growth hormone:</strong> From pulsatile secretion studies <span class="citation">(<a href="#ref-Veldhuis1996">Veldhuis et al. 1996</a>)</span></li>
+</ul>
+</div>
+<div id="network-topologies" class="section level3 hasAnchor" number="1.5.2">
+<h3><span class="header-section-number">1.5.2</span> Network Topologies<a href="introduction.html#network-topologies" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Feedback connections are determined from established physiological knowledge:</p>
+<ul>
+<li>Endocrine axes: Hypothalamic-pituitary-peripheral organ structure</li>
+<li>Glucose-insulin: Glucose stimulates insulin, insulin suppresses hepatic glucose output</li>
+<li>Thyroid: Negative feedback of T3 on TRH and TSH</li>
+</ul>
+</div>
+</div>
+<div id="reporting-standards" class="section level2 hasAnchor" number="1.6">
+<h2><span class="header-section-number">1.6</span> Reporting Standards<a href="introduction.html#reporting-standards" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Results are reported following control systems engineering conventions:</p>
+<ul>
+<li><strong>Time constants:</strong> Reported as <span class="math inline">\(\tau = 1/\omega_n\)</span> or response time to 63% of final value</li>
+<li><strong>Settling time:</strong> Time to reach and stay within 2% of final value</li>
+<li><strong>Rise time:</strong> Time to go from 10% to 90% of final value</li>
+<li><strong>Overshoot:</strong> <span class="math inline">\((y_{\max} - y_{\infty}) / y_{\infty} \times 100\%\)</span></li>
+</ul>
+<p>All simulations and analyses are reproducible via documented R scripts provided in supplementary materials.</p>
+
+</div>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-Boroujerdi2013" class="csl-entry">
+Boroujerdi, M. A., and S. Schmidt. 2013. <span>“A Negative Feedback Model for a Mechanism Based Description of Longitudinal Observations.”</span> <em>Methods of Information in Medicine</em> 52 (6): 484–93. <a href="https://doi.org/10.3414/ME12-02-0034">https://doi.org/10.3414/ME12-02-0034</a>.
+</div>
+<div id="ref-Boroujerdi2024" class="csl-entry">
+Boroujerdi, Massoud. 2024. <em>A Generic Model for Dynamics Simulation: An r Shiny App for Type One Diabetes Mellitus</em>. Great Britain: Amazon Books.
+</div>
+<div id="ref-Cavalieri1984" class="csl-entry">
+Cavalieri, Ralph R. 1984. <span>“The Kinetics of Triiodothyronine and Thyroxine in Man.”</span> <em>Journal of Clinical Investigation</em> 53 (4): 895–903.
+</div>
+<div id="ref-DeFronzo1979" class="csl-entry">
+DeFronzo, Ralph A., John D. Tobin, and Reubin Andres. 1979. <span>“Glucose Clamp Technique: A Method for Quantifying Insulin Secretion and Resistance.”</span> <em>American Journal of Physiology-Endocrinology and Metabolism</em> 237 (3): E214–23. <a href="https://doi.org/10.1152/ajpendo.1979.237.3.E214">https://doi.org/10.1152/ajpendo.1979.237.3.E214</a>.
+</div>
+<div id="ref-Polonsky1986" class="csl-entry">
+Polonsky, Kenneth S., and Arthur H. Rubenstein. 1984. <span>“C-Peptide as a Measure of the Secretion and Hepatic Extraction of Insulin.”</span> <em>Diabetes</em> 33 (5): 486–94. <a href="https://doi.org/10.2337/diab.33.5.486">https://doi.org/10.2337/diab.33.5.486</a>.
+</div>
+<div id="ref-Rosenfield1971" class="csl-entry">
+Rosenfield, Robert L., Leon Hellman, Howard Roffwarg, Elliot D. Weitzman, Donald K. Fukushima, and T. F. Gallagher. 1971. <span>“Plasma Cortisol Production and Metabolism in Man.”</span> <em>Journal of Clinical Endocrinology &amp; Metabolism</em> 33 (2): 343–48. <a href="https://doi.org/10.1210/jcem-33-2-343">https://doi.org/10.1210/jcem-33-2-343</a>.
+</div>
+<div id="ref-Signal" class="csl-entry">
+Signal developers. 2023. <em><span class="nocase">signal</span>: Signal Processing</em>. <a href="http://r-forge.r-project.org/projects/signal/">http://r-forge.r-project.org/projects/signal/</a>.
+</div>
+<div id="ref-Soetaert2010" class="csl-entry">
+Soetaert, Karline, Thomas Petzoldt, and R. Woodrow Setzer. 2010. <span>“Solving Differential Equations in <span>R</span>: Package <span class="nocase">deSolve</span>.”</span> <em>Journal of Statistical Software</em> 33 (9): 1–25. <a href="https://doi.org/10.18637/jss.v033.i09">https://doi.org/10.18637/jss.v033.i09</a>.
+</div>
+<div id="ref-Veldhuis1996" class="csl-entry">
+Veldhuis, Johannes D., Ali Iranmanesh, Karen K. Y. Ho, Michael J. Waters, Michael L. Johnson, and Guillermo Lizarralde. 1996. <span>“Secretory Dynamics of Growth Hormone in Humans.”</span> <em>Journal of Clinical Endocrinology &amp; Metabolism</em> 81 (11): 3854–66. <a href="https://doi.org/10.1210/jcem.81.11.8923829">https://doi.org/10.1210/jcem.81.11.8923829</a>.
+</div>
+<div id="ref-Wickham2016" class="csl-entry">
+Wickham, Hadley. 2016. <em><span class="nocase">ggplot2</span>: Elegant Graphics for Data Analysis</em>. New York: Springer-Verlag. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
+</div>
+<div id="ref-Xie2016" class="csl-entry">
+Xie, Yihui. 2016. <em><span class="nocase">bookdown</span>: Authoring Books and Technical Documents with <span>R</span> Markdown</em>. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://bookdown.org/yihui/bookdown">https://bookdown.org/yihui/bookdown</a>.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="references.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/01-intro.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["Endocrine Network.pdf", "Endocrine Network.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
