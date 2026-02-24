@@ -1,0 +1,37 @@
+name,category,MCR_min,MCR_h,omega_n_rad_per_min,zeta,suggested_type,halflife_min,reference_key,notes
+Glucose,substrate,0.0667,4.0,0.0667,0.7,G,10.4,DeFronzo1979,Glucose clamp studies; MCR ~4.0 mL/kg/min
+Free_Fatty_Acids,substrate,0.0462,2.77,0.0462,0.7,G,15.0,Klein1986,Tracer dilution; context-dependent
+Amino_Acids_Mixed,substrate,0.0231,1.39,0.0231,0.7,G,30.0,Wolfe2006,Varies by amino acid; leucine reference
+Lactate,substrate,0.1155,6.93,0.1155,0.7,G,6.0,Stanley1985,Rapid turnover
+Ketone_Bodies,substrate,0.0347,2.08,0.0347,0.7,G,20.0,Balasse1989,Beta-hydroxybutyrate reference
+Insulin,hormone,0.1386,8.32,0.1386,0.5,G,5.0,Polonsky1986,C-peptide kinetics; rapid clearance
+Glucagon,hormone,0.0866,5.20,0.0866,0.5,G,8.0,Lefebvre1975,Pulsatile secretion
+Growth_Hormone,hormone,0.0347,2.08,0.0347,0.5,H,20.0,Veldhuis1996,Pulsatile secretion; GH pulses
+Cortisol,hormone,0.0077,0.462,0.0077,0.7,H,90.0,Rosenfield1971,HPA axis; ultradian rhythms
+ACTH,hormone,0.0693,4.16,0.0693,0.5,G,10.0,Orth1992,Precursor to cortisol
+Epinephrine,hormone,0.3465,20.8,0.3465,0.5,G,2.0,Cryer1980,Rapid clearance; stress response
+Norepinephrine,hormone,0.2310,13.9,0.2310,0.5,G,3.0,Cryer1980,Rapid clearance; sympathetic
+Leptin,hormone,0.0014,0.083,0.0014,0.7,H,500.0,Klein2004,Slow clearance; adipose signal
+Ghrelin,hormone,0.0231,1.39,0.0231,0.5,G,30.0,Akamizu2006,Appetite regulation
+IGF1,hormone,0.0003,0.017,0.0003,0.7,H,2400.0,Juul1994,Very slow clearance; bound to BPs
+TSH,hormone,0.0116,0.694,0.0116,0.7,H,60.0,Cavalieri1984,Thyroid axis; pituitary
+T4_Thyroxine,hormone,0.00007,0.0042,0.00007,0.9,H,10080.0,Cavalieri1984,7-day half-life; highly stable
+T3_Triiodothyronine,hormone,0.00048,0.029,0.00048,0.8,H,1440.0,Cavalieri1984,1-day half-life; active form
+Testosterone,hormone,0.0010,0.060,0.0010,0.7,H,693.0,Winters1969,HPG axis; male
+Estradiol,hormone,0.0347,2.08,0.0347,0.7,H,20.0,Longcope1986,HPG axis; female; cyclic
+Progesterone,hormone,0.0020,0.120,0.0020,0.7,H,347.0,Little1972,HPG axis; luteal phase
+LH,hormone,0.0231,1.39,0.0231,0.5,G,30.0,Veldhuis1988,Pulsatile; gonadotropin
+FSH,hormone,0.0048,0.288,0.0048,0.7,H,144.0,Veldhuis1988,Gonadotropin; slower than LH
+Prolactin,hormone,0.0347,2.08,0.0347,0.7,H,20.0,Sassin1972,Lactation; circadian rhythm
+Oxytocin,hormone,0.3465,20.8,0.3465,0.5,G,2.0,Leake1981,Pulsatile; rapid clearance
+Vasopressin_ADH,hormone,0.0693,4.16,0.0693,0.5,G,10.0,Robertson1976,Osmotic regulation
+Parathyroid_Hormone,hormone,0.1386,8.32,0.1386,0.5,G,5.0,Zaheer2018,Calcium homeostasis
+Calcitonin,hormone,0.0693,4.16,0.0693,0.5,G,10.0,Hirsch1978,Opposes PTH
+Vitamin_D3_Active,hormone,0.0003,0.017,0.0003,0.9,H,2400.0,Jones2014,Calcidiol; very slow
+Renin,hormone,0.0347,2.08,0.0347,0.5,G,20.0,Nussberger1987,RAAS; enzymatic
+Angiotensin_II,hormone,0.6930,41.6,0.6930,0.5,G,1.0,Campbell1990,RAAS; vasoconstrictor
+Aldosterone,hormone,0.0347,2.08,0.0347,0.7,H,20.0,Vecsei1979,RAAS; mineralocorticoid
+Melatonin,hormone,0.0347,2.08,0.0347,0.5,G,20.0,Waldhauser1984,Circadian; pineal
+GLP1,hormone,0.3465,20.8,0.3465,0.5,G,2.0,Deacon2004,Incretin; rapid DPP4 degradation
+GIP,hormone,0.1155,6.93,0.1155,0.5,G,6.0,Deacon2004,Incretin; GI peptide
+Amylin,hormone,0.1386,8.32,0.1386,0.5,G,5.0,Young1993,Co-secreted with insulin

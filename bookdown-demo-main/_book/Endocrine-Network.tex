@@ -1,0 +1,667 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{book}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Endocrine Networks Simulations},
+  pdfauthor={Dr Massoud Boroujerdi},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Endocrine Networks Simulations}
+\author{Dr Massoud Boroujerdi}
+\date{2026-02-24}
+
+\begin{document}
+\maketitle
+
+\chapter{Methods}\label{Methods}
+
+\section{Mathematical Framework}\label{mathematical-framework}
+
+\subsection{Second-Order Negative Feedback Model}\label{second-order-negative-feedback-model}
+
+The fundamental building block of our network model is the second-order negative feedback compartmental system \citep{Boroujerdi2013, Boroujerdi2024}. Each element (substrate or hormone) is represented by two compartments: S (substrate/hormone) and C (controller), governed by the differential equations:
+
+\[\frac{dS}{dt} = R_a - k_3C\]
+
+\[\frac{dC}{dt} = k_4S - k_2C\]
+
+At steady state, the production rate relates to concentration via the metabolic clearance rate (MCR):
+
+\[R_a = \frac{k_3k_4}{k_2}S = \text{MCR} \cdot S\]
+
+where \(\text{MCR} = \frac{k_3k_4}{k_2}\) with dimensions of time\(^{-1}\).
+
+\subsection{Transfer Function Formulation}\label{transfer-function-formulation}
+
+The system parameters relate to the standard second-order differential equation parameters:
+- Natural frequency: \(\omega_n = \sqrt{k_3k_4}\)
+- Damping ratio: \(\zeta = \frac{k_2}{2\omega_n}\)
+
+Equivalently: \(k_2 = 2\zeta\omega_n\) and \(k_3 = k_4 = \omega_n\).
+
+The state-space representation is:
+
+\[\dot{\mathbf{x}} = A\mathbf{x} + Bu\]
+
+\[y = C\mathbf{x}\]
+
+where:
+
+\[A = \begin{bmatrix} 0 & -k_3 \\ k_4 & -k_2 \end{bmatrix}, \quad B = \begin{bmatrix} 1 \\ 0 \end{bmatrix}\]
+
+\subsection{G-Type and H-Type Transfer Functions}\label{g-type-and-h-type-transfer-functions}
+
+Two transfer function architectures are considered, corresponding to different controller flux connections:
+
+\textbf{G-type (feed-forward):} Uses the \(k_3C\) flux, yielding:
+
+\[G_i(s) = \frac{k_{3i}(s + k_{2i})}{s(s + k_{2i}) + k_{3i}k_{4i}}\]
+
+This transfer function includes a zero at \(s = -k_{2i}\), providing phase lead compensation and faster response.
+
+\textbf{H-type (feedback):} Uses the \(k_2C\) flux, yielding:
+
+\[H_i(s) = \frac{k_{2i}k_{4i}}{s(s + k_{2i}) + k_{3i}k_{4i}}\]
+
+This transfer function has no zeros, resulting in pure lag behavior with enhanced damping and stronger noise rejection.
+
+\subsection{Network Composition}\label{network-composition}
+
+For a network of \(N\) elements, the overall transfer function is obtained by cascade multiplication:
+
+\[G_{\text{network}}(s) = \prod_{i=1}^{N} T_i(s)\]
+
+where \(T_i(s)\) is either \(G_i(s)\) or \(H_i(s)\) depending on the architecture assignment.
+
+For networks with feedback loops, the closed-loop transfer function is:
+
+\[G_{\text{closed}}(s) = \frac{G_{\text{forward}}(s)}{1 + G_{\text{forward}}(s)G_{\text{feedback}}(s)}\]
+
+\subsection{Parameter Assignment from MCR}\label{parameter-assignment-from-mcr}
+
+For each element \(i\) representing a substrate or hormone:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Obtain MCR:} From literature or experimental measurements (units: time\(^{-1}\))
+\item
+  \textbf{Compute natural frequency:}
+  \[\omega_{n,i} = \text{MCR}_i \cdot \text{scaling factor}\]
+
+  The scaling factor relates MCR to the characteristic frequency of the system. For simplicity, we use \(\omega_{n,i} = \text{MCR}_i\) as a first approximation.
+\item
+  \textbf{Assign damping ratio:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    For critically damped systems: \(\zeta_i = 1.0\)
+  \item
+    For under damped systems (potential oscillations): \(\zeta_i = 0.5\) to \(0.7\)
+  \item
+    From experimental data when available
+  \end{itemize}
+\item
+  \textbf{Calculate rate constants:}
+  \[k_{2i} = 2\zeta_i\omega_{n,i}\]
+  \[k_{3i} = k_{4i} = \omega_{n,i}\]
+\end{enumerate}
+
+\subsection{Time-Domain Solutions via Inverse Laplace Transform}\label{time-domain-solutions-via-inverse-laplace-transform}
+
+For step input \(u(t) = u_0 \cdot \mathbb{1}(t)\) (unit step function), the output in the time domain is obtained via inverse Laplace transform:
+
+\[y(t) = \mathcal{L}^{-1}\left\{G(s) \cdot \frac{u_0}{s}\right\}\]
+
+For a second-order system with transfer function:
+
+\[G(s) = \frac{\omega_n^2}{s^2 + 2\zeta\omega_n s + \omega_n^2}\]
+
+The analytical solution for a unit step input depends on damping:
+
+\textbf{Underdamped case} (\(\zeta < 1\)):
+
+\[y(t) = 1 - \frac{e^{-\zeta\omega_n t}}{\sqrt{1-\zeta^2}} \sin\left(\omega_d t + \phi\right)\]
+
+where \(\omega_d = \omega_n\sqrt{1-\zeta^2}\) (damped natural frequency) and \(\phi = \arctan\left(\frac{\sqrt{1-\zeta^2}}{\zeta}\right)\).
+
+\textbf{Critically damped case} (\(\zeta = 1\)):
+
+\[y(t) = 1 - e^{-\omega_n t}(1 + \omega_n t)\]
+
+\textbf{Overdamped case} (\(\zeta > 1\)):
+
+\[y(t) = 1 - \frac{1}{2\omega_n\sqrt{\zeta^2-1}}\left[(\zeta + \sqrt{\zeta^2-1})e^{s_1 t} - (\zeta - \sqrt{\zeta^2-1})e^{s_2 t}\right]\]
+
+where \(s_1 = -\omega_n(\zeta + \sqrt{\zeta^2-1})\) and \(s_2 = -\omega_n(\zeta - \sqrt{\zeta^2-1})\).
+
+\section{Frequency-Domain Analysis}\label{frequency-domain-analysis}
+
+\subsection{Bode Plot Construction}\label{bode-plot-construction}
+
+Frequency response is evaluated by substituting \(s = j\omega\) into the transfer function:
+
+\[H(j\omega) = G(j\omega)\]
+
+The magnitude (in dB) and phase are:
+
+\[|H(j\omega)|_{\text{dB}} = 20\log_{10}|H(j\omega)|\]
+
+\[\angle H(j\omega) = \arctan\left(\frac{\text{Im}[H(j\omega)]}{\text{Re}[H(j\omega)]}\right)\]
+
+Bode plots are generated by evaluating \(H(j\omega)\) across a logarithmic frequency range (typically \(10^{-3}\) to \(10^{3}\) rad/time-unit).
+
+\subsection{Performance Metrics}\label{performance-metrics}
+
+From the Bode plot, we extract:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{DC gain:} \(|H(j\omega)|_{\text{dB}}\) at \(\omega \to 0\)
+\item
+  \textbf{Cutoff frequency (\(\omega_c\)):} Frequency where \(|H(j\omega)|_{\text{dB}} = |H(0)|_{\text{dB}} - 3\) dB
+\item
+  \textbf{Bandwidth:} Range from DC to \(\omega_c\)
+\item
+  \textbf{High-frequency attenuation:} \(|H(j\omega)|_{\text{dB}}\) at \(\omega \to \infty\)
+\item
+  \textbf{Phase margin:} Phase at gain crossover frequency
+\item
+  \textbf{Gain margin:} Gain at phase crossover frequency (\(-180°\))
+\end{enumerate}
+
+These metrics directly translate to biological properties:
+- \textbf{Cutoff frequency} → characteristic response time (\(\tau \approx 2\pi/\omega_c\))
+- \textbf{Bandwidth} → ability to track time-varying signals
+- \textbf{High-frequency attenuation} → noise rejection capability
+- \textbf{Phase margin} → stability reserve
+
+\subsection{Stability Analysis}\label{stability-analysis}
+
+Network stability is determined by the locations of the poles of \(G_{\text{network}}(s)\):
+
+\textbf{Routh-Hurwitz criterion:} System is stable if all coefficients of the characteristic polynomial are positive and all elements in the first column of the Routh array are positive.
+
+\textbf{Eigenvalue criterion:} For state-space representation, compute eigenvalues \(\lambda\) of matrix \(A\). System is stable if \(\text{Re}(\lambda_i) < 0\) for all \(i\).
+
+\textbf{Nyquist criterion:} System is stable if the Nyquist plot of the open-loop transfer function \(L(j\omega) = G_{\text{forward}}(j\omega)G_{\text{feedback}}(j\omega)\) does not encircle the point \((-1, 0)\).
+
+\section{Computational Implementation}\label{computational-implementation}
+
+\subsection{Software and Packages}\label{software-and-packages}
+
+All simulations were performed in R (version 4.3.0 or higher). Key packages:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{deSolve}: Numerical solution of differential equations \citep{Soetaert2010}
+\item
+  \texttt{control}: Control systems analysis (if available; alternatively custom implementation)
+\item
+  \texttt{signal}: Signal processing and frequency analysis \citep{Signal}
+\item
+  \texttt{ggplot2}: Data visualization \citep{Wickham2016}
+\item
+  \texttt{bookdown}: Document preparation \citep{Xie2016}
+\end{itemize}
+
+The algorithms implementing the network transfer function, frequency response, and time-domain simulation are provided in the \hyperref[Appendix]{Appendix}.
+
+\section{Validation Approach}\label{validation-approach}
+
+\subsection{Comparison with Known Systems}\label{comparison-with-known-systems}
+
+Model predictions are validated against experimental data from well-characterized systems:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Glucose-insulin system:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Oral glucose tolerance test (OGTT) data
+  \item
+    Ultradian oscillation period (\textasciitilde90 min)
+  \item
+    Insulin clearance rate (\textasciitilde5 min half-life)
+  \end{itemize}
+\item
+  \textbf{HPA axis (cortisol):}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Cortisol circadian rhythm
+  \item
+    Response to ACTH stimulation
+  \item
+    Dexamethasone suppression dynamics
+  \end{itemize}
+\item
+  \textbf{Thyroid axis:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    TSH response to TRH stimulation
+  \item
+    T4 and T3 half-lives (7 days and 1 day, respectively)
+  \item
+    Levothyroxine dose-response curves
+  \end{itemize}
+\end{enumerate}
+
+\subsection{Sensitivity Analysis}\label{sensitivity-analysis}
+
+Parameter sensitivity is assessed by:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{One-at-a-time (OAT):} Vary each parameter individually by ±20\% while holding others constant
+\item
+  \textbf{Monte Carlo:} Random sampling from parameter distributions, compute output statistics
+\item
+  \textbf{Sobol indices:} Variance-based sensitivity analysis to quantify parameter importance
+\end{enumerate}
+
+\section{Data Sources}\label{data-sources}
+
+\subsection{Metabolic Clearance Rates}\label{metabolic-clearance-rates}
+
+MCR values are obtained from published literature and pharmacokinetic databases:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Glucose:} Measured via glucose clamp studies \citep{DeFronzo1979}
+\item
+  \textbf{Insulin:} From C-peptide kinetics or insulin infusion studies \citep{Polonsky1986}
+\item
+  \textbf{Cortisol:} From tracer dilution studies \citep{Rosenfield1971}
+\item
+  \textbf{Thyroid hormones:} From radiotracer kinetics \citep{Cavalieri1984}
+\item
+  \textbf{Growth hormone:} From pulsatile secretion studies \citep{Veldhuis1996}
+\end{itemize}
+
+\subsection{Network Topologies}\label{network-topologies}
+
+Feedback connections are determined from established physiological knowledge:
+
+\begin{itemize}
+\tightlist
+\item
+  Endocrine axes: Hypothalamic-pituitary-peripheral organ structure
+\item
+  Glucose-insulin: Glucose stimulates insulin, insulin suppresses hepatic glucose output
+\item
+  Thyroid: Negative feedback of T3 on TRH and TSH
+\end{itemize}
+
+\section{Reporting Standards}\label{reporting-standards}
+
+Results are reported following control systems engineering conventions:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Time constants:} Reported as \(\tau = 1/\omega_n\) or response time to 63\% of final value
+\item
+  \textbf{Settling time:} Time to reach and stay within 2\% of final value
+\item
+  \textbf{Rise time:} Time to go from 10\% to 90\% of final value
+\item
+  \textbf{Overshoot:} \((y_{\max} - y_{\infty}) / y_{\infty} \times 100\%\)
+\end{itemize}
+
+\chapter*{Example of values}\label{example-of-values}
+\addcontentsline{toc}{chapter}{Example of values}
+
+\begin{longtable}[t]{llrrr}
+\caption{\label{tab:table-1}Example of values (Part 1)}\\
+\toprule
+name & category & MCR\_min & MCR\_h & omega\_n\_rad\_per\_min\\
+\midrule
+Glucose & substrate & 0.06670 & 4.0000 & 0.06670\\
+Free\_Fatty\_Acids & substrate & 0.04620 & 2.7700 & 0.04620\\
+Amino\_Acids\_Mixed & substrate & 0.02310 & 1.3900 & 0.02310\\
+Lactate & substrate & 0.11550 & 6.9300 & 0.11550\\
+Ketone\_Bodies & substrate & 0.03470 & 2.0800 & 0.03470\\
+\addlinespace
+Insulin & hormone & 0.13860 & 8.3200 & 0.13860\\
+Glucagon & hormone & 0.08660 & 5.2000 & 0.08660\\
+Growth\_Hormone & hormone & 0.03470 & 2.0800 & 0.03470\\
+Cortisol & hormone & 0.00770 & 0.4620 & 0.00770\\
+ACTH & hormone & 0.06930 & 4.1600 & 0.06930\\
+\addlinespace
+Epinephrine & hormone & 0.34650 & 20.8000 & 0.34650\\
+Norepinephrine & hormone & 0.23100 & 13.9000 & 0.23100\\
+Leptin & hormone & 0.00140 & 0.0830 & 0.00140\\
+Ghrelin & hormone & 0.02310 & 1.3900 & 0.02310\\
+IGF1 & hormone & 0.00030 & 0.0170 & 0.00030\\
+\addlinespace
+TSH & hormone & 0.01160 & 0.6940 & 0.01160\\
+T4\_Thyroxine & hormone & 0.00007 & 0.0042 & 0.00007\\
+T3\_Triiodothyronine & hormone & 0.00048 & 0.0290 & 0.00048\\
+Testosterone & hormone & 0.00100 & 0.0600 & 0.00100\\
+Estradiol & hormone & 0.03470 & 2.0800 & 0.03470\\
+\addlinespace
+Progesterone & hormone & 0.00200 & 0.1200 & 0.00200\\
+LH & hormone & 0.02310 & 1.3900 & 0.02310\\
+FSH & hormone & 0.00480 & 0.2880 & 0.00480\\
+Prolactin & hormone & 0.03470 & 2.0800 & 0.03470\\
+Oxytocin & hormone & 0.34650 & 20.8000 & 0.34650\\
+\addlinespace
+Vasopressin\_ADH & hormone & 0.06930 & 4.1600 & 0.06930\\
+Parathyroid\_Hormone & hormone & 0.13860 & 8.3200 & 0.13860\\
+Calcitonin & hormone & 0.06930 & 4.1600 & 0.06930\\
+Vitamin\_D3\_Active & hormone & 0.00030 & 0.0170 & 0.00030\\
+Renin & hormone & 0.03470 & 2.0800 & 0.03470\\
+\addlinespace
+Angiotensin\_II & hormone & 0.69300 & 41.6000 & 0.69300\\
+Aldosterone & hormone & 0.03470 & 2.0800 & 0.03470\\
+Melatonin & hormone & 0.03470 & 2.0800 & 0.03470\\
+GLP1 & hormone & 0.34650 & 20.8000 & 0.34650\\
+GIP & hormone & 0.11550 & 6.9300 & 0.11550\\
+\addlinespace
+Amylin & hormone & 0.13860 & 8.3200 & 0.13860\\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[t]{rlrll}
+\caption{\label{tab:table-2}Example of values continuation (Part 2):}\\
+\toprule
+zeta & suggested\_type & halflife\_min & reference\_key & notes\\
+\midrule
+0.7 & G & 10.4 & DeFronzo1979 & Glucose clamp studies; MCR \textasciitilde{}4.0 mL/kg/min\\
+0.7 & G & 15.0 & Klein1986 & Tracer dilution; context-dependent\\
+0.7 & G & 30.0 & Wolfe2006 & Varies by amino acid; leucine reference\\
+0.7 & G & 6.0 & Stanley1985 & Rapid turnover\\
+0.7 & G & 20.0 & Balasse1989 & Beta-hydroxybutyrate reference\\
+\addlinespace
+0.5 & G & 5.0 & Polonsky1986 & C-peptide kinetics; rapid clearance\\
+0.5 & G & 8.0 & Lefebvre1975 & Pulsatile secretion\\
+0.5 & H & 20.0 & Veldhuis1996 & Pulsatile secretion; GH pulses\\
+0.7 & H & 90.0 & Rosenfield1971 & HPA axis; ultradian rhythms\\
+0.5 & G & 10.0 & Orth1992 & Precursor to cortisol\\
+\addlinespace
+0.5 & G & 2.0 & Cryer1980 & Rapid clearance; stress response\\
+0.5 & G & 3.0 & Cryer1980 & Rapid clearance; sympathetic\\
+0.7 & H & 500.0 & Klein2004 & Slow clearance; adipose signal\\
+0.5 & G & 30.0 & Akamizu2006 & Appetite regulation\\
+0.7 & H & 2400.0 & Juul1994 & Very slow clearance; bound to BPs\\
+\addlinespace
+0.7 & H & 60.0 & Cavalieri1984 & Thyroid axis; pituitary\\
+0.9 & H & 10080.0 & Cavalieri1984 & 7-day half-life; highly stable\\
+0.8 & H & 1440.0 & Cavalieri1984 & 1-day half-life; active form\\
+0.7 & H & 693.0 & Winters1969 & HPG axis; male\\
+0.7 & H & 20.0 & Longcope1986 & HPG axis; female; cyclic\\
+\addlinespace
+0.7 & H & 347.0 & Little1972 & HPG axis; luteal phase\\
+0.5 & G & 30.0 & Veldhuis1988 & Pulsatile; gonadotropin\\
+0.7 & H & 144.0 & Veldhuis1988 & Gonadotropin; slower than LH\\
+0.7 & H & 20.0 & Sassin1972 & Lactation; circadian rhythm\\
+0.5 & G & 2.0 & Leake1981 & Pulsatile; rapid clearance\\
+\addlinespace
+0.5 & G & 10.0 & Robertson1976 & Osmotic regulation\\
+0.5 & G & 5.0 & Zaheer2018 & Calcium homeostasis\\
+0.5 & G & 10.0 & Hirsch1978 & Opposes PTH\\
+0.9 & H & 2400.0 & Jones2014 & Calcidiol; very slow\\
+0.5 & G & 20.0 & Nussberger1987 & RAAS; enzymatic\\
+\addlinespace
+0.5 & G & 1.0 & Campbell1990 & RAAS; vasoconstrictor\\
+0.7 & H & 20.0 & Vecsei1979 & RAAS; mineralocorticoid\\
+0.5 & G & 20.0 & Waldhauser1984 & Circadian; pineal\\
+0.5 & G & 2.0 & Deacon2004 & Incretin; rapid DPP4 degradation\\
+0.5 & G & 6.0 & Deacon2004 & Incretin; GI peptide\\
+\addlinespace
+0.5 & G & 5.0 & Young1993 & Co-secreted with insulin\\
+\bottomrule
+\end{longtable}
+
+All simulations and analyses are reproducible via documented R scripts provided in supplementary materials.
+
+\section{Appendix}\label{Appendix}
+
+\textbf{R programs structure and code snippets}
+
+\subsection{Algorithm: Network Transfer Function}\label{algorithm-network-transfer-function}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Pseudocode for network transfer function construction}
+
+\NormalTok{network\_tf }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(elements, architecture) \{}
+  \CommentTok{\# elements: list of (omega\_n, zeta, MCR) for each node}
+  \CommentTok{\# architecture: vector of "G" or "H" for each node}
+  
+  \CommentTok{\# Initialize numerator and denominator}
+\NormalTok{  num }\OtherTok{\textless{}{-}} \DecValTok{1}
+\NormalTok{  den }\OtherTok{\textless{}{-}} \DecValTok{1}
+  
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(elements)) \{}
+\NormalTok{    omega\_n }\OtherTok{\textless{}{-}}\NormalTok{ elements[[i]]}\SpecialCharTok{$}\NormalTok{omega\_n}
+\NormalTok{    zeta }\OtherTok{\textless{}{-}}\NormalTok{ elements[[i]]}\SpecialCharTok{$}\NormalTok{zeta}
+    
+\NormalTok{    k2 }\OtherTok{\textless{}{-}} \DecValTok{2} \SpecialCharTok{*}\NormalTok{ zeta }\SpecialCharTok{*}\NormalTok{ omega\_n}
+\NormalTok{    k3 }\OtherTok{\textless{}{-}}\NormalTok{ omega\_n}
+\NormalTok{    k4 }\OtherTok{\textless{}{-}}\NormalTok{ omega\_n}
+    
+    \ControlFlowTok{if}\NormalTok{ (architecture[i] }\SpecialCharTok{==} \StringTok{"G"}\NormalTok{) \{}
+      \CommentTok{\# G{-}type: numerator has (s + k2)}
+\NormalTok{      num\_i }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(k3, k3}\SpecialCharTok{*}\NormalTok{k2)}
+\NormalTok{      den\_i }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, k2, k3}\SpecialCharTok{*}\NormalTok{k4)}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
+      \CommentTok{\# H{-}type: numerator is constant}
+\NormalTok{      num\_i }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(k2}\SpecialCharTok{*}\NormalTok{k4)}
+\NormalTok{      den\_i }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, k2, k3}\SpecialCharTok{*}\NormalTok{k4)}
+\NormalTok{    \}}
+    
+    \CommentTok{\# Convolve (multiply polynomials)}
+\NormalTok{    num }\OtherTok{\textless{}{-}} \FunctionTok{convolve}\NormalTok{(num, }\FunctionTok{rev}\NormalTok{(num\_i))}
+\NormalTok{    den }\OtherTok{\textless{}{-}} \FunctionTok{convolve}\NormalTok{(den, }\FunctionTok{rev}\NormalTok{(den\_i))}
+\NormalTok{  \}}
+  
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\AttributeTok{num =}\NormalTok{ num, }\AttributeTok{den =}\NormalTok{ den))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Algorithm: Frequency Response}\label{algorithm-frequency-response}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Compute frequency response}
+\NormalTok{freq\_response }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(tf, freq\_range) \{}
+\NormalTok{  s }\OtherTok{\textless{}{-}} \DecValTok{1}\DataTypeTok{i} \SpecialCharTok{*}\NormalTok{ freq\_range}
+  
+\NormalTok{  H }\OtherTok{\textless{}{-}} \FunctionTok{sapply}\NormalTok{(s, }\ControlFlowTok{function}\NormalTok{(si) \{}
+\NormalTok{    num\_val }\OtherTok{\textless{}{-}} \FunctionTok{polyval}\NormalTok{(tf}\SpecialCharTok{$}\NormalTok{num, si)}
+\NormalTok{    den\_val }\OtherTok{\textless{}{-}} \FunctionTok{polyval}\NormalTok{(tf}\SpecialCharTok{$}\NormalTok{den, si)}
+    \FunctionTok{return}\NormalTok{(num\_val }\SpecialCharTok{/}\NormalTok{ den\_val)}
+\NormalTok{  \})}
+  
+\NormalTok{  magnitude\_dB }\OtherTok{\textless{}{-}} \DecValTok{20} \SpecialCharTok{*} \FunctionTok{log10}\NormalTok{(}\FunctionTok{abs}\NormalTok{(H))}
+\NormalTok{  phase\_deg }\OtherTok{\textless{}{-}} \FunctionTok{atan2}\NormalTok{(}\FunctionTok{Im}\NormalTok{(H), }\FunctionTok{Re}\NormalTok{(H)) }\SpecialCharTok{*} \DecValTok{180} \SpecialCharTok{/}\NormalTok{ pi}
+  
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(}
+    \AttributeTok{freq =}\NormalTok{ freq\_range,}
+    \AttributeTok{magnitude\_dB =}\NormalTok{ magnitude\_dB,}
+    \AttributeTok{phase\_deg =}\NormalTok{ phase\_deg}
+\NormalTok{  ))}
+\NormalTok{\}}
+
+\CommentTok{\# Helper: polynomial evaluation}
+\NormalTok{polyval }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(p, x) \{}
+  \FunctionTok{sum}\NormalTok{(p }\SpecialCharTok{*}\NormalTok{ x}\SpecialCharTok{\^{}}\NormalTok{((}\FunctionTok{length}\NormalTok{(p)}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\SpecialCharTok{:}\DecValTok{0}\NormalTok{))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Algorithm: Time-Domain Simulation}\label{algorithm-time-domain-simulation}
+
+For network simulation with feedback:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Define ODE system}
+\NormalTok{network\_ode }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(t, x, params) \{}
+\NormalTok{  N }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(x) }\SpecialCharTok{/} \DecValTok{2}  \CommentTok{\# Number of elements}
+  
+\NormalTok{  dxdt }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\NormalTok{N)}
+  
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{N) \{}
+\NormalTok{    S\_i }\OtherTok{\textless{}{-}}\NormalTok{ x[}\DecValTok{2}\SpecialCharTok{*}\NormalTok{i }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{]}
+\NormalTok{    C\_i }\OtherTok{\textless{}{-}}\NormalTok{ x[}\DecValTok{2}\SpecialCharTok{*}\NormalTok{i]}
+    
+    \CommentTok{\# Substrate compartment}
+\NormalTok{    dxdt[}\DecValTok{2}\SpecialCharTok{*}\NormalTok{i }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ params}\SpecialCharTok{$}\NormalTok{Ra[i] }\SpecialCharTok{{-}}\NormalTok{ params}\SpecialCharTok{$}\NormalTok{k3[i] }\SpecialCharTok{*}\NormalTok{ C\_i}
+    
+    \CommentTok{\# Controller compartment}
+\NormalTok{    dxdt[}\DecValTok{2}\SpecialCharTok{*}\NormalTok{i] }\OtherTok{\textless{}{-}}\NormalTok{ params}\SpecialCharTok{$}\NormalTok{k4[i] }\SpecialCharTok{*}\NormalTok{ S\_i }\SpecialCharTok{{-}}\NormalTok{ params}\SpecialCharTok{$}\NormalTok{k2[i] }\SpecialCharTok{*}\NormalTok{ C\_i}
+    
+    \CommentTok{\# Add feedback terms from other elements}
+    \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{N) \{}
+      \ControlFlowTok{if}\NormalTok{ (params}\SpecialCharTok{$}\NormalTok{feedback[i, j] }\SpecialCharTok{!=} \DecValTok{0}\NormalTok{) \{}
+\NormalTok{        dxdt[}\DecValTok{2}\SpecialCharTok{*}\NormalTok{i] }\OtherTok{\textless{}{-}}\NormalTok{ dxdt[}\DecValTok{2}\SpecialCharTok{*}\NormalTok{i] }\SpecialCharTok{+}\NormalTok{ params}\SpecialCharTok{$}\NormalTok{feedback[i, j] }\SpecialCharTok{*}\NormalTok{ x[}\DecValTok{2}\SpecialCharTok{*}\NormalTok{j }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{]}
+\NormalTok{      \}}
+\NormalTok{    \}}
+\NormalTok{  \}}
+  
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{list}\NormalTok{(dxdt))}
+\NormalTok{\}}
+
+\CommentTok{\# Solve}
+\FunctionTok{library}\NormalTok{(deSolve)}
+\NormalTok{out }\OtherTok{\textless{}{-}} \FunctionTok{ode}\NormalTok{(}\AttributeTok{y =}\NormalTok{ initial\_conditions, }
+           \AttributeTok{times =}\NormalTok{ time\_seq, }
+           \AttributeTok{func =}\NormalTok{ network\_ode, }
+           \AttributeTok{parms =}\NormalTok{ parameters)}
+\end{Highlighting}
+\end{Shaded}
+
+\chapter*{References}\label{references}
+\addcontentsline{toc}{chapter}{References}
+
+\nocite{*}
+\bibliography{FRreferences.bib}
+
+\end{document}

@@ -1,0 +1,10 @@
+bookdown::pdf_book:
+  latex_engine: xelatex
+  citation_package: natbib
+  toc: false
+  delete_merged_file: true
+  keep_tex: yes
+bookdown::html_document2:
+  css:
+    - toc.css
+    - tables.css
